@@ -63,13 +63,17 @@
             <el-submenu index="7">
               <template slot="title"><i class="el-icon-setting"></i>资料管理</template>
               <el-menu-item index="priceSet">收费标准设置</el-menu-item>
-              <el-menu-item index="7-2">设施资料管理</el-menu-item>
-              <el-menu-item index="7-3">食谱管理</el-menu-item>
-              <el-menu-item index="7-4">通知消息管理</el-menu-item>
-              <el-submenu index="7-5">
+              <el-menu-item index="recipeIndex">食谱管理</el-menu-item>
+              <el-submenu index="7-2">
+                <template slot="title">设施资料管理</template>
+                <el-menu-item index="7-2-1">楼房管理</el-menu-item>
+                <el-menu-item index="7-2-2">宿舍管理</el-menu-item>
+                <el-menu-item index="7-2-3">基础设施管理</el-menu-item>
+              </el-submenu>
+              <el-submenu index="7-4">
                 <template slot="title">系统设置</template>
-                <el-menu-item index="7-5-1">权限管理</el-menu-item>
-                <el-menu-item index="7-5-2">操作日志</el-menu-item>
+                <el-menu-item index="7-4-1">权限管理</el-menu-item>
+                <el-menu-item index="7-4-2">操作日志</el-menu-item>
               </el-submenu>
             </el-submenu>
           </el-menu>
@@ -81,6 +85,6 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style>
 
 </style>

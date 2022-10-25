@@ -9,7 +9,13 @@ const routes = [
         name: 'index',
         component: () => import('../views/index.vue'),
         children: [
-            {path: 'priceSet', name: 'PriceSet', component: () => import('../views/DM/PriceSet.vue')}
+            {path: 'priceSet', name: 'PriceSet', component: () => import('../views/DM/PriceSet.vue')},
+            {path: 'recipeIndex', redirect:'/recipe' ,name: 'RecipeIndex', component: () => import('../views/DM/RecipeIndex.vue'),
+                children:[
+                {path: '/recipe', name: 'Recipe', component: () => import('../views/DM/Recipe.vue')},
+                {path: '/dish', name: 'Dish', component: () => import('../views/DM/Dish.vue')}
+                ]
+            }
         ]
     },
     {
