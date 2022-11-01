@@ -1,14 +1,14 @@
 <template>
     <div>
         <div style="margin-top:-20px">
-            <p style="font-size:20px;font-weight: bold;">食谱管理</p>
+            <p style="font-size:20px;font-weight: bold;">楼房管理</p>
         </div>
         <el-menu
              class="el-menu-Redipe"
             mode="horizontal"
             background-color="rgb(238, 240, 246)" text-color="#909399"  style="border-width:0" router>
-            <el-menu-item index="/recipe" class="item">食谱管理</el-menu-item>
-            <el-menu-item index="/dish" class="item">菜品管理</el-menu-item>
+            <el-menu-item index="/building" class="item">楼宇管理</el-menu-item>
+            <el-menu-item index="/room" class="item">房间管理</el-menu-item>
         </el-menu>
         <router-view ></router-view>
     </div>
@@ -16,7 +16,7 @@
 
 <script>
     export default {
-        name: 'RecipeIndex',
+        name:'BuildingIndex',
         data() {
           return {
               tabPosition: 'bottom'

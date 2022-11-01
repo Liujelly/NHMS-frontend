@@ -15,6 +15,12 @@ const routes = [
                 {path: '/recipe', name: 'Recipe', component: () => import('../views/DM/Recipe.vue')},
                 {path: '/dish', name: 'Dish', component: () => import('../views/DM/Dish.vue')}
                 ]
+            },
+            {path:'buildingIndex',redirect:'/building',name:'BuildingIndex',component:()=>import('../views/DM/BuildingIndex.vue'),
+                children:[
+                {path: '/building', name: 'Building', component: () => import('../views/DM/Building.vue')},
+                {path: '/room', name: 'Room', component: () => import('../views/DM/Room.vue')}
+                ]
             }
         ]
     },

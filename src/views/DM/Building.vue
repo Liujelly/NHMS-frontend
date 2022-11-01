@@ -41,34 +41,45 @@
             <el-table-column
             fixed
             prop="id"
-            label="id" width="50">   
+            label="楼房id" width="70">   
             </el-table-column>
             <el-table-column
-            prop="name"
-            label="名称">
+            prop="headId"
+            label="负责人id">
             </el-table-column>
             <el-table-column
-            prop="cuisine"
-            label="菜系">
+            prop="buildingName"
+            label="楼房名称">
             </el-table-column>
             <el-table-column
-            prop="ingredients"
-            label="主料">
+            prop="builder"
+            label="建造商">
             </el-table-column>
             <el-table-column
-            prop="taste"
-            label="口味">
+            prop="completionTime"
+            label="建成时间">
             </el-table-column>
             <el-table-column
-            prop="tabooCrowds"
-            label="忌口人群">
+            prop="area"
+            label="占地面积">
+            </el-table-column>
+            <el-table-column
+            prop="structure"
+            label="房屋结构">
+            </el-table-column>
+            <el-table-column
+            prop="floorsNumber"
+            label="楼房层数">
+            </el-table-column>
+            <el-table-column
+            prop="roomsNumber"
+            label="房间数">
             </el-table-column>
             <el-table-column
             fixed="right"
             label="操作"
             width="125">
             <template slot-scope="scope">
-                <el-button @click="handleLook(scope.row)" type="text" size="small">制作方法</el-button>
                 <el-button @click="handleEdit(scope.row)" type="text" size="small">编辑</el-button>
             </template>
             </el-table-column>
@@ -85,32 +96,38 @@
             </el-pagination>
         </div>
 
-        <el-dialog
-            title="制作方法"
-            :visible.sync="dialogVisible"
-            width="30%">
-            <p>{{methodLook}}</p>
-        </el-dialog>
-
         <el-dialog v-bind:title="dialogTitle" :visible.sync="dialogFormVisible" width="30%">
             <el-form label-width="80px" size="small">
-                <el-form-item label="菜名">
-                <el-input v-model="form.name" autocomplete="off"></el-input>
+                <el-form-item label="楼房名称">
+                <el-input v-model="form.buildingName" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="菜系">
-                <el-input v-model="form.cuisine" autocomplete="off"></el-input>
+                <el-form-item label="建造商">
+                <el-input v-model="form.builder" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="主料">
-                <el-input v-model="form.ingredients" autocomplete="off"></el-input>
+                <el-form-item label="建成时间">
+                <el-date-picker
+                    v-model="form.completionTime"
+                    type="date"
+                    placeholder="选择日期"
+                    style="width:100%"
+                    size="small">
+                </el-date-picker>
+                
                 </el-form-item>
-                <el-form-item label="口味">
-                <el-input v-model="form.taste" autocomplete="off"></el-input>
+                <el-form-item label="占地面积">
+                <el-input v-model="form.area" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="忌口人群">
-                <el-input v-model="form.tabooCrowds" autocomplete="off"></el-input>
+                <el-form-item label="房屋结构">
+                <el-input v-model="form.structure" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="制作方法">
-                <el-input v-model="form.method" autocomplete="off"></el-input>
+                <el-form-item label="楼房层数">
+                <el-input v-model="form.floorsNumber" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="房间数">
+                <el-input v-model="form.roomsNumber" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="负责人id">
+                <el-input v-model="form.headId" autocomplete="off"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -124,7 +141,7 @@
 <script>
     
     export default {
-        name: 'Dish',
+        name: 'Building',
         inject: ['reload'],
         data() {
             return {
@@ -134,20 +151,24 @@
             input2: '',
             input3: '',
             input4: '',
-            methodLook:'',
             total:0,
             dialogTitle:'',
             dialogFuc:'',
             pageNum:1,
             pageSize:3,
             dialogFormVisible: false,
-            dialogVisible:false,
+
+            pickerOptions: {
+            disabledDate(time) {
+                return time.getTime() > Date.now();
+            },
+            },
             }
         },
         methods: {
             load(){
                 const _this=this
-                this.request.get("http://localhost:8081/dishFindAll",{
+                this.request.get("http://localhost:8081/buildingFindAll",{
                 params:{
                     pageNum:this.pageNum,
                     pageSize:this.pageSize
@@ -179,10 +200,6 @@
                 this.dialogTitle="编辑菜品"
                 this.form=row
                 this.dialogFormVisible=true
-            },
-            handleLook(row){
-                this.dialogVisible=true
-                this.methodLook=row.method
             },
             save(){
                 if(this.dialogFuc=="add"){

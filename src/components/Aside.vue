@@ -61,20 +61,20 @@
               </el-submenu>
             </el-submenu>
             <el-submenu index="7">
-              <template slot="title"><i class="el-icon-setting"></i>资料管理</template>
+              <template slot="title"><i class="el-icon-document"></i>资料管理</template>
               <el-menu-item index="priceSet">收费标准设置</el-menu-item>
               <el-menu-item index="recipeIndex">食谱管理</el-menu-item>
-              <el-submenu index="7-2">
+              <el-submenu index="7-3">
                 <template slot="title">设施资料管理</template>
-                <el-menu-item index="7-2-1">楼房管理</el-menu-item>
-                <el-menu-item index="7-2-2">宿舍管理</el-menu-item>
-                <el-menu-item index="7-2-3">基础设施管理</el-menu-item>
+                <el-menu-item index="buildingIndex">楼房管理</el-menu-item>
+                <el-menu-item index="7-3-2">宿舍管理</el-menu-item>
+                <el-menu-item index="7-3-3">基础设施管理</el-menu-item>
               </el-submenu>
-              <el-submenu index="7-4">
-                <template slot="title">系统设置</template>
-                <el-menu-item index="7-4-1">权限管理</el-menu-item>
-                <el-menu-item index="7-4-2">操作日志</el-menu-item>
-              </el-submenu>
+            </el-submenu>
+            <el-submenu index="8">
+              <template slot="title"><i class="el-icon-setting"></i>系统设置</template>
+              <el-menu-item index="8-1">权限管理</el-menu-item>
+              <el-menu-item index="8-2">操作日志</el-menu-item>
             </el-submenu>
           </el-menu>
 </template>

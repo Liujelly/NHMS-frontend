@@ -124,7 +124,7 @@
 <script>
     
     export default {
-        name: 'Dish',
+        name: 'Room',
         inject: ['reload'],
         data() {
             return {
