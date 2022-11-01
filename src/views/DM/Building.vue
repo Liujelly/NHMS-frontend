@@ -7,29 +7,22 @@
                 style="margin-left:15px" 
                 class="Search"
                 size="medium"
-                placeholder="请输入菜名"
+                placeholder="请输入楼名"
                 v-model="input1">
             </el-input>
             <el-input
                 style="margin-left:10px"            
                 class="Search"
                 size="medium"
-                placeholder="请输入口味"
+                placeholder="请输入房屋结构"
                 v-model="input2">
-            </el-input>
-            <el-input
-                style="margin-left:10px"            
-                class="Search"
-                size="medium"
-                placeholder="请输入菜系"
-                v-model="input3">
             </el-input>
             <el-input
                 style="margin-left:10px"
                 class="Search"
                 size="medium"
-                placeholder="请输入适宜人群"
-                v-model="input4">
+                placeholder="请输入负责人id"
+                v-model="input3">
             </el-input>
             <el-button  style="margin-left:10px" @click="reset">重置</el-button>
             <el-button type="primary" @click="findComplex">搜索</el-button>
@@ -76,6 +69,10 @@
             label="房间数">
             </el-table-column>
             <el-table-column
+            prop="repairTime"
+            label="修缮次数">
+            </el-table-column>
+            <el-table-column
             fixed="right"
             label="操作"
             width="125">
@@ -97,22 +94,15 @@
         </div>
 
         <el-dialog v-bind:title="dialogTitle" :visible.sync="dialogFormVisible" width="30%">
-            <el-form label-width="80px" size="small">
-                <el-form-item label="楼房名称">
+            <el-form label-width="80px" size="small" :model="form" :rules="rules">
+                <el-form-item label="楼房名称"  prop="buildingName">
                 <el-input v-model="form.buildingName" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="建造商">
                 <el-input v-model="form.builder" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="建成时间">
-                <el-date-picker
-                    v-model="form.completionTime"
-                    type="date"
-                    placeholder="选择日期"
-                    style="width:100%"
-                    size="small">
-                </el-date-picker>
-                
+                <el-date-picker type="date" placeholder="选择日期" v-model="form.completionTime" style="width: 100%;" value-format="yyyy-MM-dd"></el-date-picker>
                 </el-form-item>
                 <el-form-item label="占地面积">
                 <el-input v-model="form.area" autocomplete="off"></el-input>
@@ -125,6 +115,9 @@
                 </el-form-item>
                 <el-form-item label="房间数">
                 <el-input v-model="form.roomsNumber" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="修缮次数">
+                <el-input v-model="form.repairTime" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="负责人id">
                 <el-input v-model="form.headId" autocomplete="off"></el-input>
@@ -145,24 +138,24 @@
         inject: ['reload'],
         data() {
             return {
+                rules:{
+                buildingName:[
+                    {
+                        validator:this.nameRules, trigger: 'change'
+                    }
+                ],
+            },
             tableData:[],
             form:{},
             input1: '',
             input2: '',
             input3: '',
-            input4: '',
             total:0,
             dialogTitle:'',
             dialogFuc:'',
             pageNum:1,
             pageSize:3,
             dialogFormVisible: false,
-
-            pickerOptions: {
-            disabledDate(time) {
-                return time.getTime() > Date.now();
-            },
-            },
             }
         },
         methods: {
@@ -203,7 +196,7 @@
             },
             save(){
                 if(this.dialogFuc=="add"){
-                    this.request.post("http://localhost:8081/dishAdd",this.form).then(res=>{
+                    this.request.post("http://localhost:8081/buildingAdd",this.form).then(res=>{
                     if(res){
                         this.$message.success("添加成功")
                     }else{
@@ -211,7 +204,7 @@
                     }
                 })
                 }else if(this.dialogFuc=="edit"){
-                    this.request.post("http://localhost:8081/dishUpdate",this.form).then(res=>{
+                    this.request.post("http://localhost:8081/buildingUpdate",this.form).then(res=>{
                     if(res){
                         this.$message.success("编辑成功")
                     }else{
@@ -223,14 +216,13 @@
             },
             findComplex(){
                 const _this=this
-                this.request.get("http://localhost:8081/dishFindComplex",{
+                this.request.get("http://localhost:8081/buildingFindComplex",{
                 params:{
                     pageNum:this.pageNum,
                     pageSize:this.pageSize,
                     input1:this.input1,
                     input2:this.input2,
                     input3:this.input3,
-                    input4:this.input4,
                 }
             }).then(res=>{
                 console.log(res)
@@ -241,12 +233,21 @@
             reset(){
                 this.input1='',
                 this.input2='',
-                this.input3='',
-                this.input4=''
+                this.input3=''
             },
             exp(){
-                window.open("http://localhost:8081/dishExport")
-            }
+                window.open("http://localhost:8081/BuildingExport")
+            },
+            nameRules(rule, value, callback){
+                for(var i=0;i<this.tableData.length;i++){
+                    if(this.tableData[i].buildingName==value){
+                        callback("该楼名已存在")
+                        break
+                    }
+                }
+            
+            },
+            
 
         },
         created(){

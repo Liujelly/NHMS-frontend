@@ -110,7 +110,7 @@
                 <el-input v-model="form.tabooCrowds" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="制作方法">
-                <el-input v-model="form.method" autocomplete="off"></el-input>
+                <el-input type="textarea" v-model="form.method" autocomplete="off"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
