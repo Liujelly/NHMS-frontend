@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="function">
-            <el-button  type="success"  style="margin-left:5px;margin-right:10px" @click="handleAdd">新增</el-button>
+            <el-button  type="success"  style="margin-left:5px;margin-right:10px" @click="handleAdd">新增楼宇</el-button>
             <el-button type="primary" style="margin-right:35px" @click="exp">导出数据</el-button>
             <el-input  
                 style="margin-left:15px" 
@@ -34,7 +34,7 @@
             <el-table-column
             fixed
             prop="id"
-            label="楼房id" width="70">   
+            label="楼宇id" width="70">   
             </el-table-column>
             <el-table-column
             prop="headId"
@@ -42,7 +42,7 @@
             </el-table-column>
             <el-table-column
             prop="buildingName"
-            label="楼房名称">
+            label="楼宇名称">
             </el-table-column>
             <el-table-column
             prop="builder"
@@ -95,7 +95,7 @@
 
         <el-dialog v-bind:title="dialogTitle" :visible.sync="dialogFormVisible" width="30%">
             <el-form label-width="80px" size="small" :model="form" :rules="rules">
-                <el-form-item label="楼房名称"  prop="buildingName">
+                <el-form-item label="楼宇名称"  prop="buildingName">
                 <el-input v-model="form.buildingName" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="建造商">
@@ -110,7 +110,7 @@
                 <el-form-item label="房屋结构">
                 <el-input v-model="form.structure" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="楼房层数">
+                <el-form-item label="楼宇层数">
                 <el-input v-model="form.floorsNumber" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="房间数">
@@ -184,13 +184,13 @@
             },
             handleAdd(){
                 this.dialogFuc="add"
-                this.dialogTitle="新增菜品"
+                this.dialogTitle="新增楼宇信息"
                 this.dialogFormVisible = true
                 this.form={}
             },
             handleEdit(row){
                 this.dialogFuc="edit"
-                this.dialogTitle="编辑菜品"
+                this.dialogTitle="编辑楼宇信息"
                 this.form=row
                 this.dialogFormVisible=true
             },
@@ -212,7 +212,11 @@
                     }
                 })
                 }
-                this.reload();
+                clearTimeout(this.timer);  //清除延迟执行 
+            
+                this.timer = setTimeout(()=>{   //设置延迟执行
+                    this.reload();
+                },500);
             },
             findComplex(){
                 const _this=this

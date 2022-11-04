@@ -67,8 +67,8 @@
               <el-submenu index="7-3">
                 <template slot="title">设施资料管理</template>
                 <el-menu-item index="buildingIndex">楼房管理</el-menu-item>
-                <el-menu-item index="7-3-2">宿舍管理</el-menu-item>
-                <el-menu-item index="7-3-3">基础设施管理</el-menu-item>
+                <el-menu-item index="dorm">宿舍管理</el-menu-item>
+                <el-menu-item index="infrastructure">基础设施管理</el-menu-item>
               </el-submenu>
             </el-submenu>
             <el-submenu index="8">

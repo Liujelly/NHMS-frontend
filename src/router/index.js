@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path: '/',
+        path: '/funcIndex',
         name: 'index',
         component: () => import('../views/index.vue'),
         children: [
@@ -21,11 +21,14 @@ const routes = [
                 {path: '/building', name: 'Building', component: () => import('../views/DM/Building.vue')},
                 {path: '/room', name: 'Room', component: () => import('../views/DM/Room.vue')}
                 ]
-            }
+            },
+            {path: 'dorm', name: 'Dorm', component: () => import('../views/DM/Dorm.vue')},
+            {path: 'infrastructure', name: 'Infrastructure', component: () => import('../views/DM/Infrastructure.vue')},
         ]
     },
     {
-        path: "/home",
+        path: "/",
+        alias: '/home',
         name: 'Home',
         component: () => import('../views/Home.vue')
     }
