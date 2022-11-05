@@ -2,14 +2,35 @@
         <el-menu  router>
             <el-submenu index="1" >
               <template slot="title"><i class="el-icon-aligrandpa"></i>老人管理</template>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
-              <el-menu-item index="1-3">选项3</el-menu-item>
+              <el-submenu index="1-1">
+                <template slot="title">档案管理</template>
+                <el-menu-item index="Elderly">老人档案</el-menu-item>
+                <el-menu-item index="InArchives">入住档案</el-menu-item>
+                <el-menu-item index="OutArchives">退住档案</el-menu-item>
+                <el-menu-item index="LeaveArchives">请假档案</el-menu-item>
+              </el-submenu>
+              <el-submenu index="1-2">
+                <template slot="title">入住管理</template>
+                <el-menu-item index="CheckIn">老人入住信息管理</el-menu-item>
+                <el-menu-item index="Approval">入住批准</el-menu-item>
+
+              </el-submenu>
+              <el-submenu index="1-3">
+                <template slot="title">退住管理</template>
+                <el-menu-item index="Retreat">退住信息管理</el-menu-item>
+                <el-menu-item index="RApproval">退住批准</el-menu-item>
+              </el-submenu>
               <el-submenu index="1-4">
-                <template slot="title">选项4</template>
-                <el-menu-item index="1-4-1">选项4-1</el-menu-item>
+                <template slot="title">请假管理</template>
+                <el-menu-item index="LeaveApproval">请假批准</el-menu-item>
+                <el-menu-item index="BackApproval">回院批准</el-menu-item>
+              </el-submenu>
+              <el-submenu index="1-5">
+                <template slot="title">宿舍管理</template>
+                <el-menu-item index="Dormitory">入住分配</el-menu-item>
               </el-submenu>
             </el-submenu>
+
             <el-submenu index="2">
               <template slot="title"><i class="el-icon-alijiankang"></i>健康管理</template>
               <el-menu-item index="2-1">选项1</el-menu-item>

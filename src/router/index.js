@@ -5,10 +5,44 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path: '/funcIndex',
+        path: '/',
         name: 'index',
         component: () => import('../views/index.vue'),
         children: [
+            {
+                path: 'CheckIn', name: 'CheckIn', component: () => import('../views/EL/CheckIn.vue')
+            },
+            {
+                path: 'Approval', name: 'Approval', component: () => import('../views/EL/Approval.vue')
+            },
+            {
+                path: 'Elderly', name: 'Elderly', component: () => import('../views/EL/Elderly.vue')
+            },
+            {
+                path: 'Dormitory', name: 'Dormitory', component: () => import('../views/EL/Dormitory.vue')
+            },
+            {
+                path: 'Retreat', name: 'Retreat', component: () => import('../views/EL/Retreat.vue')
+            },
+            {
+                path: 'RApproval', name: 'RApproval', component: () => import('../views/EL/RApproval.vue')
+            },
+            {
+                path: 'LeaveApproval', name: 'LeaveApproval', component: () => import('../views/EL/LeaveApproval.vue')
+            },
+            {
+                path: 'BackApproval', name: 'BackApproval', component: () => import('../views/EL/BackApproval.vue')
+            },
+            {
+                path: 'InArchives', name: 'InArchives', component: () => import('../views/EL/InArchives.vue')
+            },
+            {
+                path: 'OutArchives', name: 'OutArchives', component: () => import('../views/EL/OutArchives.vue')
+            },
+            {
+                path: 'LeaveArchives', name: 'LeaveArchives', component: () => import('../views/EL/LeaveArchives.vue')
+            },
+
             {path: 'priceSet', name: 'PriceSet', component: () => import('../views/DM/PriceSet.vue')},
             {path: 'recipeIndex', redirect:'/recipe' ,name: 'RecipeIndex', component: () => import('../views/DM/RecipeIndex.vue'),
                 children:[
@@ -27,8 +61,7 @@ const routes = [
         ]
     },
     {
-        path: "/",
-        alias: '/home',
+        path: "/home",
         name: 'Home',
         component: () => import('../views/Home.vue')
     }

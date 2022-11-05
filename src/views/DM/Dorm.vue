@@ -89,7 +89,7 @@
             title="查看入住老人"
             :visible.sync="dialogVisible"
             width="30%">
-            <p>{{elderlyNames}}</p>
+            <p>{{elderlyIds}}</p>
         </el-dialog>
 
         <el-dialog v-bind:title="dialogTitle" :visible.sync="dialogFormVisible" width="30%">
@@ -143,7 +143,7 @@
             form:{},
             input1: '',
             input2: '',
-            elderlyNames:'',
+            elderlyIds:'',
             total:0,
             dialogTitle:'新增宿舍',
             pageNum:1,
@@ -185,7 +185,7 @@
             },
             handleLook(row){
                 this.dialogVisible=true
-                this.elderlyNames=row.elderlyNames
+                this.elderlyIds=row.elderlyIds
             },
             handleSelectionChange (data) {
                   // console.log(data);  

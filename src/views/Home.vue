@@ -124,7 +124,7 @@
                 })
         },
         toFunc(){
-          this.$router.push('/funcIndex')
+          this.$router.push('/')
         }
         
     },
