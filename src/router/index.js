@@ -58,7 +58,8 @@ const routes = [
             },
             {path: 'dorm', name: 'Dorm', component: () => import('../views/DM/Dorm.vue')},
             {path: 'infrastructure', name: 'Infrastructure', component: () => import('../views/DM/Infrastructure.vue')},
-        ]
+            {path: 'log', name: 'Log', component: () => import('../views/DM/Log.vue')},
+        ] 
     },
     {
         path: "/home",

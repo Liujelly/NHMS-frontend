@@ -95,7 +95,7 @@
             <el-submenu index="8">
               <template slot="title"><i class="el-icon-setting"></i>系统设置</template>
               <el-menu-item index="8-1">权限管理</el-menu-item>
-              <el-menu-item index="8-2">操作日志</el-menu-item>
+              <el-menu-item index="log">操作日志</el-menu-item>
             </el-submenu>
           </el-menu>
 </template>
