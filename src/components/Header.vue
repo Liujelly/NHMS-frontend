@@ -6,7 +6,7 @@
           <div class="block" style="display:flex; align-items:center"><el-avatar :size="25" :src="circleUrl" style="margin-right:5px;"></el-avatar><span style="width:50px;cursor:default" >刘盛栋</span></div>
         </div>
         <div style="float:right;margin-right:15px;line-height:3.5">
-          <i class="el-icon-alizhuye" style="margin-right:10px" @click="toHome"></i>
+          <i class="el-icon-alizhuye" style="margin-right:10px" @click="toHome" ></i>
           <i class="el-icon-alixiaoxi"></i>
         </div>
     </div>
@@ -24,7 +24,7 @@
         methods:{
           toHome:function(){
            this.$router.push('/home')
-          }
+          },
         }
     }
 </script>

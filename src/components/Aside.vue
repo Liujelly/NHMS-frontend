@@ -1,6 +1,6 @@
 <template>
         <el-menu  router>
-            <el-submenu index="1" >
+            <!-- <el-submenu index="1" >
               <template slot="title"><i class="el-icon-aligrandpa"></i>老人管理</template>
               <el-submenu index="1-1">
                 <template slot="title">档案管理</template>
@@ -83,26 +83,66 @@
             </el-submenu>
             <el-submenu index="7">
               <template slot="title"><i class="el-icon-document"></i>资料管理</template>
-              <el-menu-item index="priceSet">收费标准设置</el-menu-item>
-              <el-menu-item index="recipeIndex">食谱管理</el-menu-item>
+              <el-menu-item index="/priceSet">收费标准设置</el-menu-item>
+              <el-menu-item index="/recipeIndex">食谱管理</el-menu-item>
               <el-submenu index="7-3">
                 <template slot="title">设施资料管理</template>
-                <el-menu-item index="buildingIndex">楼房管理</el-menu-item>
-                <el-menu-item index="dorm">宿舍管理</el-menu-item>
-                <el-menu-item index="infrastructure">基础设施管理</el-menu-item>
+                <el-menu-item index="/buildingIndex">楼房管理</el-menu-item>
+                <el-menu-item index="/dorm">宿舍管理</el-menu-item>
+                <el-menu-item index="/infrastructure">基础设施管理</el-menu-item>
               </el-submenu>
-            </el-submenu>
-            <el-submenu index="8">
-              <template slot="title"><i class="el-icon-setting"></i>系统设置</template>
               <el-menu-item index="8-1">权限管理</el-menu-item>
-              <el-menu-item index="log">操作日志</el-menu-item>
+              <el-menu-item index="/log">操作日志</el-menu-item>
+            </el-submenu> -->
+
+            <el-submenu
+              v-for="(item,index) in menuList"
+              :key="index"
+              :index="index+''"
+            >
+              <template slot="title"><i :class="item.iconCls"></i><span style="margin-left:8px">{{item.nameZh}}</span></template>
+
+              <template v-for="child in item.children">
+                <!-- 如果二级菜单还有子菜单，继续循环该二级菜单-->
+                <el-submenu
+                  :key="child.path"
+                  :index="child.path"
+                  v-if="child.children&&child.children.length>0"
+                >
+                  <template slot="title"><span>{{child.nameZh}}</span>
+                  </template>
+                  <!-- 三级菜单 -->
+                  <template v-for="grChild in child.children">
+                    <el-menu-item :index="grChild.path" :key="grChild.path">
+                      <span>{{grChild.nameZh}}</span>
+                    </el-menu-item>
+                  </template>
+                </el-submenu>
+                <!-- 二级菜单没有子菜单的直接显示 -->
+                <el-menu-item v-else :index="child.path" :key="child.path">
+                  <span>{{child.nameZh}}</span>
+                </el-menu-item>
+              </template>
             </el-submenu>
+            
           </el-menu>
 </template>
 
 <script>
     export default {
-        name:"Aside"
+        name:"Aside",
+        data(){
+            return{
+              menuList:[],
+            }
+        },
+         created(){
+            const _this=this
+            this.request.get("http://localhost:8081/getMenu").then(res=>{
+                console.log(res)
+                _this.menuList=res
+            })
+        }
     }
 </script>
 
