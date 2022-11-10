@@ -94,7 +94,7 @@
         </div>
 
         <el-dialog v-bind:title="dialogTitle" :visible.sync="dialogFormVisible" width="30%">
-            <el-form label-width="80px" size="small" :model="form" :rules="rules">
+            <el-form label-width="80px" size="small" :model="form" :rules="rules" ref="buildingForm">
                 <el-form-item label="楼宇名称"  prop="buildingName">
                 <el-input v-model="form.buildingName" autocomplete="off"></el-input>
                 </el-form-item>
@@ -193,6 +193,7 @@
                 this.dialogTitle="编辑楼宇信息"
                 this.form=row
                 this.dialogFormVisible=true
+                 this.$nextTick(() => {  this.$refs['buildingForm'].clearValidate();});
             },
             save(){
                 if(this.dialogFuc=="add"){
@@ -243,11 +244,14 @@
                 window.open("http://localhost:8081/BuildingExport")
             },
             nameRules(rule, value, callback){
+                if(this.dialogFuc=="add"){
                 for(var i=0;i<this.tableData.length;i++){
                     if(this.tableData[i].buildingName==value){
                         callback("该楼名已存在")
                         break
                     }
+                }}else{
+                    callback()
                 }
             
             },

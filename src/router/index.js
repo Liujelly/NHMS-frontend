@@ -62,10 +62,15 @@ const routes = [
         ] 
     },
     {
-        path: "/",
-        alias: '/home',
+        path: "/home",
         name: 'Home',
         component: () => import('../views/Home.vue')
+    },
+    {
+        path: "/",
+        alias: '/login',
+        name: 'Login',
+        component: () => import('../views/login.vue')
     }
 ]
 

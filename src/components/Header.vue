@@ -7,7 +7,7 @@
         </div>
         <div style="float:right;margin-right:15px;line-height:3.5">
           <i class="el-icon-alizhuye" style="margin-right:10px" @click="toHome" ></i>
-          <i class="el-icon-alixiaoxi"></i>
+          <i class="el-icon-alidengchu" @click="toLogin"></i>
         </div>
     </div>
 </template>
@@ -25,6 +25,9 @@
           toHome:function(){
            this.$router.push('/home')
           },
+          toLogin(){
+             this.$router.push('/')
+          }
         }
     }
 </script>
