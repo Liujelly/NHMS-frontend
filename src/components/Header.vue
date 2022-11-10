@@ -27,6 +27,8 @@
           },
           toLogin(){
              this.$router.push('/')
+             this.$store.commit('del_token')
+             
           }
         }
     }

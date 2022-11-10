@@ -1,0 +1,303 @@
+<template>
+    <div>
+        <div style="margin-top:-20px">
+            <p style="font-size:20px;font-weight: bold;">操作日志</p>
+        </div>
+        <div >
+            <el-input  
+                style="margin-left:15px" 
+                class="Search"
+                size="medium"
+                placeholder="请输入英文"
+                v-model="input1">
+            </el-input>
+            <el-input
+                style="margin-left:10px"            
+                class="Search"
+                size="medium"
+                placeholder="请输入中文名"
+                v-model="input2">
+            </el-input>
+            <el-button  style="margin-left:10px" @click="reset">重置</el-button>
+            <el-button type="primary" @click="addRole">添加角色</el-button>
+        </div>
+        <div class="function">
+            <el-collapse v-model="activeColItem" accordion style="width: 500px;" @change="collapseChange">
+                <el-collapse-item v-for="(item,index) in roles" :title="item.nameZh" :name="item.id" :key="index">
+                    <el-card class="box-card">
+                    <div slot="header">
+                        <span>可访问的资源</span>
+                        <el-button type="text"
+                                    style="color: #f6061b;margin: 0px;float: right; padding: 3px 0;width: 15px;height:15px"
+                                    icon="el-icon-delete" @click="deleteRole(item.id,item.name,item.nameZh)"></el-button>
+                    </div>
+                    <div>
+                        <el-tree 
+                                :props="defaultProps"
+                                :key="item.id"
+                                :data="treeData"
+                                :default-checked-keys="checkedKeys"
+                                node-key="id"
+                                ref="tree"
+                                show-checkbox
+                                highlight-current
+                                >
+                        </el-tree>
+                    </div>
+                    <div style="display: flex;justify-content: flex-end;margin-right: 10px">
+                        <el-button size="mini" @click="cancelUpdate">取消修改</el-button>
+                        <el-button type="primary" size="mini" @click="updateRoleMenu(item.id,index)">确认修改</el-button>
+                    </div>
+                    </el-card>
+                </el-collapse-item>
+            </el-collapse>
+        </div>
+    </div>
+</template>
+
+<script>
+    
+    export default {
+        name:'Log',
+        inject: ['reload'],
+        data() {
+            return {
+                checkedKeys:[],
+                defaultProps:{children: 'children',label: 'name'},
+                                    
+                activeColItem:-1,
+                treeData: [{
+                id: 1,
+                label: '老人管理',
+                children: [{
+                    id: 16,
+                    label: '档案管理',
+                    children: [{
+                        id: 17,
+                        label: '老人档案'
+                        }, {
+                        id: 18,
+                        label: '入住档案'
+                        },{
+                        id: 19,
+                        label: '退住档案'
+                        }, {
+                        id: 20,
+                        label: '请假档案'
+                        }]
+                    },{
+                    id: 21,
+                    label: '入住管理',
+                    children: [{
+                        id: 22,
+                        label: '入住信息管理'
+                        }, {
+                        id: 23,
+                        label: '入住批准'
+                        }]
+                    }, {
+                    id: 24,
+                    label: '退住管理',
+                    children: [{
+                        id: 25,
+                        label: '退住信息管理'
+                        }, {
+                        id: 26,
+                        label: '退住批准'
+                        }]
+                    }, {
+                    id: 27,
+                    label: '请假管理',
+                    children: [{
+                        id: 28,
+                        label: '请假批准'
+                        }, {
+                        id: 29,
+                        label: '回院批准'
+                        }]
+                    }, {
+                    id: 30,
+                    label: '入住分配'
+                    }]
+                }, {
+                id: 2,
+                label: '健康管理',
+                children: [{
+                    id: 5,
+                    label: '二级 2-1'
+                }, {
+                    id: 6,
+                    label: '二级 2-2'
+                }]
+                }, {
+                id: 3,
+                label: '接待管理',
+                children: [{
+                    id: 7,
+                    label: '二级 3-1'
+                }, {
+                    id: 8,
+                    label: '二级 3-2'
+                }]
+                },{
+                id: 4,
+                label: '人事管理',
+                children: [{
+                    id: 7,
+                    label: '二级 3-1'
+                }, {
+                    id: 8,
+                    label: '二级 3-2'
+                }]
+                },{
+                id: 5,
+                label: '财务管理',
+                children: [{
+                    id: 7,
+                    label: '二级 3-1'
+                }, {
+                    id: 8,
+                    label: '二级 3-2'
+                }]
+                },{
+                id: 6,
+                label: '仓库管理',
+                children: [{
+                    id: 7,
+                    label: '二级 3-1'
+                }, {
+                    id: 8,
+                    label: '二级 3-2'
+                }]
+                },{
+                id: 7,
+                label: '资料管理',
+                children: [{
+                    id: 8,
+                    label: '收费标准设置'
+                }, {
+                    id: 9,
+                    label: '食谱管理'
+                }, {
+                    id: 10,
+                    label: '设施资料管理',
+                    children: [{
+                        id: 11,
+                        label: '楼房管理'
+                        }, {
+                        id: 12,
+                        label: '宿舍管理'
+                        }, {
+                        id: 13,
+                        label: '基础设施管理'
+                        }]
+                }, {
+                    id: 14,
+                    label: '权限管理'
+                }, {
+                    id: 15,
+                    label: '操作日志'
+                }]
+                }],
+                defaultProps: {
+                children: 'children',
+                label: 'label'
+                },
+            roles:[],
+            input1: '',
+            input2: '',
+            }
+        },
+        methods:{
+            load(){
+                const _this=this
+                this.request.get("http://localhost:8081/getRole").then(res=>{
+                console.log(res)
+                 _this.roles=res
+            })
+            },
+           
+            addRole(){
+                const _this=this
+                let name=this.input1
+                let nameZh=this.input2
+                let role={name,nameZh}
+                this.request.post("http://localhost:8081/addRole",role).then(res=>{
+                    if(res){
+                        this.$message.success("添加成功")
+                    }
+                
+            })
+            clearTimeout(this.timer);  //清除延迟执行 
+            
+            this.timer = setTimeout(()=>{   //设置延迟执行
+                this.load();
+            },100);
+            },
+             reset(){
+                this.input1='',
+                this.input2='',
+                this.load()
+            },
+            collapseChange(roleId){
+                const _this=this
+                if(roleId){
+                    this.request.get("http://localhost:8081/getCheckedKey",{
+                    params:{
+                        roleId:roleId
+                    }
+                    }).then(res=>{
+                        console.log(res)
+                       _this.checkedKeys=res
+                    })
+                }
+            },
+            updateRoleMenu(roleId,index){
+                let tree = this.$refs.tree[index];
+                let selectedKeys = tree.getCheckedKeys(true);
+                let treeMenuKeys={
+                    roleId:roleId,
+                    menuIds:selectedKeys,
+                }
+                
+                this.request.post("http://localhost:8081/updateRoleMenu",treeMenuKeys).then(res=>{
+                        if(res){
+                            this.$message.success("修改成功")
+                        }
+                    })
+            },
+            deleteRole(id,name,nameZh){
+                let role={id,name,nameZh}
+                this.request.post("http://localhost:8081/deleteRole",role).then(res=>{
+                        if(res){
+                            this.$message.success("删除成功")
+                        }
+                    })
+                this.timer = setTimeout(()=>{   //设置延迟执行
+                this.load();
+                },100);
+            },
+            cancelUpdate(){
+                this.activeColItem=-1
+                this.reload();
+            }
+        },
+         created(){
+            this.load()
+        }
+        
+    }
+</script>
+
+<style lang="scss" scoped>
+.Search{
+    width: 200px;
+}
+.function{
+    margin-top:20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 7px;
+
+}
+</style>

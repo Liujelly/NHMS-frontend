@@ -59,6 +59,7 @@ const routes = [
             {path: '/dorm', name: 'Dorm', component: () => import('../views/DM/Dorm.vue')},
             {path: '/infrastructure', name: 'Infrastructure', component: () => import('../views/DM/Infrastructure.vue')},
             {path: '/log', name: 'Log', component: () => import('../views/DM/Log.vue')},
+            {path: '/permissions', name: 'Permissions', component: () => import('../views/DM/Permissions.vue')}
         ] 
     },
     {
@@ -79,5 +80,16 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
     routes
 })
+
+router.beforeEach((to,from,next)=>{
+    const token=sessionStorage.getItem('token')
+    if(to.name!=='Login'&&!token){
+        next({name:'Login'})
+    }else{
+        next();
+    }
+}
+
+)
 
 export default router
