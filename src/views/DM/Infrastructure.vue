@@ -131,7 +131,7 @@
                 </el-form-item>
                 <el-form-item label="床位状态">
                    <el-input v-model="form.status" autocomplete="off" :disabled="true" :style="{display: visible1}"></el-input>
-                     <el-select v-model="form.status" placeholder="请选择" :style="{display: visible2}">
+                     <el-select v-model="form.status" placeholder="请选择状态" :style="{display: visible2}">
                         <el-option
                         v-for="item in options"
                         :key="item.value"

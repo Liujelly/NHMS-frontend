@@ -70,53 +70,53 @@
                 id: 1,
                 label: '老人管理',
                 children: [{
-                    id: 16,
+                    id: 17,
                     label: '档案管理',
                     children: [{
-                        id: 17,
+                        id: 18,
                         label: '老人档案'
                         }, {
-                        id: 18,
+                        id: 19,
                         label: '入住档案'
                         },{
-                        id: 19,
+                        id: 20,
                         label: '退住档案'
                         }, {
-                        id: 20,
+                        id: 21,
                         label: '请假档案'
                         }]
                     },{
-                    id: 21,
+                    id: 22,
                     label: '入住管理',
                     children: [{
-                        id: 22,
+                        id: 23,
                         label: '入住信息管理'
                         }, {
-                        id: 23,
+                        id: 24,
                         label: '入住批准'
                         }]
                     }, {
-                    id: 24,
+                    id: 25,
                     label: '退住管理',
                     children: [{
-                        id: 25,
+                        id: 26,
                         label: '退住信息管理'
                         }, {
-                        id: 26,
+                        id: 27,
                         label: '退住批准'
                         }]
                     }, {
-                    id: 27,
+                    id: 28,
                     label: '请假管理',
                     children: [{
-                        id: 28,
+                        id: 29,
                         label: '请假批准'
                         }, {
-                        id: 29,
+                        id: 30,
                         label: '回院批准'
                         }]
                     }, {
-                    id: 30,
+                    id: 31,
                     label: '入住分配'
                     }]
                 }, {
@@ -193,9 +193,12 @@
                         }]
                 }, {
                     id: 14,
+                    label: '用户管理'
+                },{
+                    id: 15,
                     label: '权限管理'
                 }, {
-                    id: 15,
+                    id: 16,
                     label: '操作日志'
                 }]
                 }],
@@ -225,6 +228,8 @@
                 this.request.post("http://localhost:8081/addRole",role).then(res=>{
                     if(res){
                         this.$message.success("添加成功")
+                    }else{
+                        this.$message.error("填写内容不能为空")
                     }
                 
             })
@@ -254,10 +259,10 @@
             },
             updateRoleMenu(roleId,index){
                 let tree = this.$refs.tree[index];
-                let selectedKeys = tree.getCheckedKeys(true);
+                let selectedMenuIds = tree.getCheckedKeys(true);
                 let treeMenuKeys={
-                    roleId:roleId,
-                    menuIds:selectedKeys,
+                    roleId,
+                    selectedMenuIds,
                 }
                 
                 this.request.post("http://localhost:8081/updateRoleMenu",treeMenuKeys).then(res=>{
