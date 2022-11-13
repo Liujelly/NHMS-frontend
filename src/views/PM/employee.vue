@@ -62,6 +62,9 @@
     <el-table-column type="expand">
       <template slot-scope="props">
         <el-form label-position="left" inline class="demo-table-expand">
+          <el-form-item label="工号">
+            <span>{{ props.row.employeeId }}</span>
+          </el-form-item>
           <el-form-item label="姓名">
             <span>{{ props.row.employeeName }}</span>
           </el-form-item>
@@ -137,6 +140,10 @@
           
         </el-form>
       </template>
+    </el-table-column>
+      <el-table-column
+      label="工号"
+      prop="employeeId">
     </el-table-column>
     <el-table-column
       label="姓名"
@@ -643,6 +650,7 @@
           for (let i = 0; i < redata.length; i++) {
             redata[i].photoUrl = 'http://localhost:8081/upload/showPhoto?fileName=' + redata[i].photoUrl
           }
+          console.log(redata)
           this.tableData = redata;
           console.log(this.tableData);
           this.total = response.data.data.total; //totalcount

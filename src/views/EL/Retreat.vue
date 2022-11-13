@@ -35,7 +35,7 @@
         <el-table-column prop="dormitoryid" label="宿舍ID"></el-table-column>
         <el-table-column label="操作"  width="200" align="center">
           <template slot-scope="scope">
-            <el-button size="small" type="success" @click="edit(scope.row)">编 辑 <i class="el-icon-edit"></i></el-button>
+            
             <el-button size="small" type="danger" @click="del(scope.row.id)">删 除 <i class="el-icon-remove-outline"></i></el-button>
           </template>
         </el-table-column>

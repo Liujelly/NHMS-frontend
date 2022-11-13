@@ -75,6 +75,19 @@ const routes = [
             {path: '/rewardandpunishment', name: 'rewardandpunishment', component: () => import('../views/PM/rewardandpunishment.vue')},
             {path: '/salary', name: 'salary', component: () => import('../views/PM/salary.vue')},
             {path: '/training', name: 'training', component: () => import('../views/PM/training.vue')},
+            {path: '/gg', name: 'gg', component: () => import('../views/GG/gg.vue')},
+            {
+                path: '/donate',name: 'donate',component:()=>import('../views/GG/donate.vue')
+            },
+            {
+                path: '/visit',name: 'visit',component:()=>import('../views/GG/visit.vue')
+            },
+            {
+                path: '/patrol',name: 'patrol',component:()=>import('../views/GG/patrol.vue')
+            },
+            {
+                path: '/applytable',name: 'applytable',component:()=>import('../views/GG/applytable.vue')
+            },
         ] 
     },
     {
