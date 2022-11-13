@@ -66,7 +66,15 @@ const routes = [
             {path: '/diseaseWarning', name: 'DiseaseWarning', component: () => import('../views/HM/DiseaseWarning.vue')},
             {path: '/healthIndex', name: 'HealthIndex', component: () => import('../views/HM/HealthIndex.vue')},
             {path: '/heathLevel', name: 'HeathLevel', component: () => import('../views/HM/HeathLevel.vue')},
-            {path: '/healthIndexStandard', name: 'HealthIndexStandard', component: () => import('../views/HM/HealthIndexStandard.vue')}
+            {path: '/healthIndexStandard', name: 'HealthIndexStandard', component: () => import('../views/HM/HealthIndexStandard.vue')},
+
+            {path: '/employee', name: 'Employee', component: () => import('../views/PM/employee.vue')},
+            {path: '/attendance', name: 'attendance', component: () => import('../views/PM/attendance.vue')},
+            {path: '/check', name: 'check', component: () => import('../views/PM/check.vue')},
+            {path: '/dept', name: 'dept', component: () => import('../views/PM/dept.vue')},
+            {path: '/rewardandpunishment', name: 'rewardandpunishment', component: () => import('../views/PM/rewardandpunishment.vue')},
+            {path: '/salary', name: 'salary', component: () => import('../views/PM/salary.vue')},
+            {path: '/training', name: 'training', component: () => import('../views/PM/training.vue')},
         ] 
     },
     {

@@ -6,10 +6,12 @@ import router from './router'
 import store from './store'
 import './assets/iconfont.css'
 import request from './utils/request';
+import axios from 'axios'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 Vue.prototype.request=request
+Vue.prototype.$axios=axios
 
 
 new Vue({
