@@ -60,7 +60,13 @@ const routes = [
             {path: '/infrastructure', name: 'Infrastructure', component: () => import('../views/DM/Infrastructure.vue')},
             {path: '/log', name: 'Log', component: () => import('../views/DM/Log.vue')},
             {path: '/permissions', name: 'Permissions', component: () => import('../views/DM/Permissions.vue')},
-            {path: '/user', name: 'User', component: () => import('../views/DM/User.vue')}
+            {path: '/user', name: 'User', component: () => import('../views/DM/User.vue')},
+            
+            {path: '/healthInput', name: 'HealthInput', component: () => import('../views/HM/HealthInput.vue')},
+            {path: '/diseaseWarning', name: 'DiseaseWarning', component: () => import('../views/HM/DiseaseWarning.vue')},
+            {path: '/healthIndex', name: 'HealthIndex', component: () => import('../views/HM/HealthIndex.vue')},
+            {path: '/heathLevel', name: 'HeathLevel', component: () => import('../views/HM/HeathLevel.vue')},
+            {path: '/healthIndexStandard', name: 'HealthIndexStandard', component: () => import('../views/HM/HealthIndexStandard.vue')}
         ] 
     },
     {

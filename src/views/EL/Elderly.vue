@@ -50,7 +50,7 @@
               <el-form-item label="身份证号">
                 <span>{{ props.row.idcard }}</span>
               </el-form-item>
-              <el-form-item label="种族">
+              <el-form-item label="民族">
                 <span>{{ props.row.nation }}</span>
               </el-form-item>
               <el-form-item label="学历">
@@ -58,6 +58,9 @@
               </el-form-item>
               <el-form-item label="状态">
                 <span>{{ props.row.state }}</span>
+              </el-form-item>
+              <el-form-item label="分配状态">
+                <span>{{ props.row.dstate }}</span>
               </el-form-item>
             </el-form>
           </template>
@@ -70,7 +73,6 @@
         <el-table-column prop="address" label="地址"></el-table-column>
         <el-table-column label="操作"  width="200" align="center">
           <template slot-scope="scope">
-            <el-button size="small" type="success" @click="edit(scope.row)">修改<i class="el-icon-edit"></i></el-button>
             <el-button size="small" type="danger" @click="del(scope.row.id)">删除<i class="el-icon-remove-outline"></i></el-button>
           </template>
         </el-table-column>

@@ -59,7 +59,7 @@ export default {
           this.$message.error(res.msg)
         }else if(res.code==200){
           this.$message.error(res.msg)
-        }else{
+        }else if(res.code==400){
           this.$message.error(res.msg)
         }
       });
