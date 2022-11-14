@@ -181,7 +181,4 @@ export default {
   width: 200px;
 }
 </style>
-<style>
-.headerBg {
-  background: #eee!important;
-}
+

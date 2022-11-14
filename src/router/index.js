@@ -88,6 +88,24 @@ const routes = [
             {
                 path: '/applytable',name: 'applytable',component:()=>import('../views/GG/applytable.vue')
             },
+            {path: '/IWarehouse', name: 'IWarehouse', component: () => import('../views/WM/IWarehouse.vue')},
+            {path: '/OWarehouse', name: 'OWarehouse', component: () => import('../views/WM/OWarehouse.vue')},
+            {path: '/Warehouse', name: 'Warehouse', component: () => import('../views/WM/Warehouse.vue')},
+            {path: '/Claim', name: 'Claim', component: () => import('../views/WM/Claim.vue')},
+            {path: '/InRecord', name: 'InRecord', component: () => import('../views/WM/InRecord.vue')},
+            {path: '/OutRecord', name: 'OutRecord', component: () => import('../views/WM/OutRecord.vue')},
+            {path: '/Return', name: 'Return', component: () => import('../views/WM/Return.vue')},
+            {path: '/InventoryAlerts', name: 'InventoryAlerts', component: () => import('../views/WM/InventoryAlerts.vue')},
+            {path: '/Vonder', name: 'Vonder', component: () => import('../views/WM/Vonder.vue')},
+            {
+                path: '/Advance', name: 'Advance', component: () => import('../views/CW/Advance.vue')
+            },
+            {
+                path: '/ElderlyPrice', name: 'ElderlyPrice', component: () => import('../views/CW/ElderlyPrice.vue')
+            },
+            {
+                path: '/Reserve', name: 'Reserve', component: () => import('../views/CW/Reserve.vue')
+            },
         ] 
     },
     {

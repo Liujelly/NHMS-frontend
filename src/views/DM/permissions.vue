@@ -186,21 +186,57 @@
                 id: 5,
                 label: '财务管理',
                 children: [{
-                    id: 7,
-                    label: '二级 3-1'
+                    id: 61,
+                    label: '预交费用登记'
                 }, {
-                    id: 8,
-                    label: '二级 3-2'
+                    id: 62,
+                    label: '老人费用项目'
+                }, {
+                    id: 63,
+                    label: '预备金管理'
                 }]
                 },{
                 id: 6,
                 label: '仓库管理',
                 children: [{
-                    id: 7,
-                    label: '二级 3-1'
+                   id: 49,
+                    label: '入库管理'
                 }, {
-                    id: 8,
-                    label: '二级 3-2'
+                    id: 50,
+                    label: '出库管理'
+                }, {
+                    id: 51,
+                    label: '供应商管理'
+                }, {
+                    id: 52,
+                    label: '出入库记录',
+                    children: [{
+                        id: 53,
+                        label: '入库记录'
+                        }, {
+                        id: 54,
+                        label: '出库记录'
+                        }]
+                },{
+                    id: 55,
+                    label: '领用归还管理',
+                    children: [{
+                        id: 56,
+                        label: '领用管理'
+                        }, {
+                        id: 57,
+                        label: '归还管理'
+                        }]
+                },{
+                    id: 58,
+                    label: '库存管理',
+                    children: [{
+                        id: 59,
+                        label: '库存信息管理'
+                        }, {
+                        id: 60,
+                        label: '库存预警'
+                        }]
                 }]
                 },{
                 id: 7,
