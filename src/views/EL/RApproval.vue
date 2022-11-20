@@ -2,7 +2,7 @@
   <div>
     <el-main>
         <div style="margin-top:-20px">
-            <p style="font-size:20px;font-weight: bold;">退住批准</p>
+            <p style="font-size:20px;font-weight: bold;">退院批准</p>
         </div>
 
       <div style="margin: 20px 0">

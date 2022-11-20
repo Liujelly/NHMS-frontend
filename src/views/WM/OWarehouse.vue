@@ -236,7 +236,7 @@ console.log(val)
 
   //导出
 exp(){
-  window.open("http://localhost:9090/MaterialDetail/export")
+  window.open("http://localhost:8081/MaterialDetail/export")
 },
 
  

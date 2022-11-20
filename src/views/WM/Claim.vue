@@ -54,7 +54,7 @@
               <template slot-scope="scope">
                 <el-button type="success" size="small" @click="handleIWare(scope.row)">领用<i class="el-icon-s-fold" ></i></el-button>
                 <el-popconfirm
-                class="ml-5"
+                  class="ml-5"
                   confirm-button-text='确定'
                   cancel-button-text='不用了'
                   icon="el-icon-info"
@@ -104,30 +104,26 @@
         <el-form-item label="保质期" >
         <el-input v-model="form.shelfLife" autocomplete="off" :disabled="true"></el-input>
         </el-form-item>
-        <!-- <el-form-item label="领用人" >
-        <el-input v-model="form.inOperator" autocomplete="off" ></el-input>
-        </el-form-item> -->
+      
         
         <el-form-item label="领用人">
-          <el-select v-model="value" placeholder="请选择">
-    <el-option
-      v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value">
-    </el-option>
-  </el-select>
+          <el-input v-model="form.inOperator" autocomplete="off" type="hidden"></el-input>
+          <el-select v-model="value" placeholder="请选择员工姓名" @focus="handleSelect(value)">
+<el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.label"
+                    >
+                    </el-option>
+          </el-select>
         </el-form-item>
-        <!-- <el-form-item label="活动区域" >
-        <el-select v-model="form.region" placeholder="请选择活动区域">
-        <el-option label="区域一" value="shanghai"></el-option>
-        <el-option label="区域二" value="beijing"></el-option>
-        </el-select>
-        </el-form-item> -->
+        
+        
         </el-form>
         <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="inWarehouse()">确 定</el-button>
+        <el-button type="primary" @click="inWarehouse(form)">确 定</el-button>
         </div>
         </el-dialog>
       
@@ -167,22 +163,7 @@ import request from '@/utils/request'
     value:"",
     nowDate: "", // 当前日期
            
-    options: [{
-          value: '选项1',
-          label: '黄金糕'
-        }, {
-          value: '选项2',
-          label: '双皮奶'
-        }, {
-          value: '选项3',
-          label: '蚵仔煎'
-        }, {
-          value: '选项4',
-          label: '龙须面'
-        }, {
-          value: '选项5',
-          label: '北京烤鸭'
-        }],
+    
         value: ''
           }
       },
@@ -213,11 +194,12 @@ import request from '@/utils/request'
 this.form=row
 this.dialogFormVisible=true
 this.form.warehousingQuantity=0
+this.form.inOperator=null
     },
     //出库
 
-    inWarehouse(){
-      
+    inWarehouse(form){
+      form.inOperator=this.value
       request.post("/MaterialDetail/InWarehouse",this.form).then(res=>{
         if(res){
     this.$message.success("领用成功")
@@ -227,6 +209,15 @@ this.form.warehousingQuantity=0
     this.$message.success("领用失败")
   }
       })
+    },
+
+    //选择
+    handleSelect(){
+      const _this=this;
+      this.request.get("http://localhost:8081/findEmployee").then(res=>{
+        console.log(res)
+                _this.options=res.options;
+            })
     },
 
     //删除
@@ -262,7 +253,7 @@ console.log(val)
 
   //导出
 exp(){
-  window.open("http://localhost:9090/MaterialDetail/export")
+  window.open("http://localhost:8081/MaterialDetail/export")
 },
 
  

@@ -2,10 +2,10 @@
   <div>
     <el-main>
         <div style="margin-top:-20px">
-            <p style="font-size:20px;font-weight: bold;">退住信息管理</p>
+            <p style="font-size:20px;font-weight: bold;">退院信息管理</p>
         </div>
       <div class="function" style="margin-bottom: 30px;">
-        <el-button type="primary" @click="addretreat">添加退住信息<i class="el-icon-circle-plus-outline"></i></el-button>
+        <el-button type="primary" @click="addretreat">添加退院信息<i class="el-icon-circle-plus-outline"></i></el-button>
         <el-input
             style="margin-left:15px"
             class="Search"

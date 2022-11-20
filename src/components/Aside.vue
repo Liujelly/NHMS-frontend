@@ -5,19 +5,19 @@
               <el-submenu index="1-1">
                 <template slot="title">档案管理</template>
                 <el-menu-item index="Elderly">老人档案</el-menu-item>
-                <el-menu-item index="InArchives">入住档案</el-menu-item>
-                <el-menu-item index="OutArchives">退住档案</el-menu-item>
+                <el-menu-item index="InArchives">入院档案</el-menu-item>
+                <el-menu-item index="OutArchives">退院档案</el-menu-item>
                 <el-menu-item index="LeaveArchives">请假档案</el-menu-item>
               </el-submenu>
               <el-submenu index="1-2">
-                <template slot="title">入住管理</template>
-                <el-menu-item index="CheckIn">老人入住信息管理</el-menu-item>
-                <el-menu-item index="Approval">入住批准</el-menu-item>
+                <template slot="title">入院管理</template>
+                <el-menu-item index="CheckIn">老人入院信息管理</el-menu-item>
+                <el-menu-item index="Approval">入院批准</el-menu-item>
 
               </el-submenu>
               <el-submenu index="1-3">
-                <template slot="title">退住管理</template>
-                <el-menu-item index="Retreat">退住信息管理</el-menu-item>
+                <template slot="title">退院管理</template>
+                <el-menu-item index="Retreat">退院信息管理</el-menu-item>
                 <el-menu-item index="RApproval">退住批准</el-menu-item>
               </el-submenu>
               <el-submenu index="1-4">

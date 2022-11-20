@@ -1,8 +1,8 @@
 <template>
   <el-card class="box-card">
-    员工工资管理
-    <hr>
-    <br>
+    <div style="margin-top:-20px">
+            <p style="font-size:20px;font-weight: bold;">员工工资管理</p>
+        </div>
     <el-row style="display: flex;justify-content: flex-start;">
       <!--搜索框-->
       <span style="">
@@ -18,8 +18,6 @@
             :value="item1.value">
           </el-option>
         </el-select>
-        
-
         <el-form-item label="查询方式">
             <template slot-scope="props">
               <span v-if="props.row.inquiryMode == 0">and</span>
@@ -36,117 +34,109 @@
           </el-option>
         </el-select>
           </el-form-item>
-        
-
         <span style="margin-left: 10px; height: 20px;">
           <el-button type="success" @click="selectTable" icon="el-icon-search" style="margin-left: 10px;" >查询</el-button>
         </span>
-        
-        
       </span>
     </el-row>
     <br>
-    <br>
-    <!--表格数据及操作-->
     <el-table
     :data="tableData"
     style="width: 100%">
-    <el-table-column type="expand">
-      <template slot-scope="props">
-        <el-form label-position="left" inline class="demo-table-expand">
-          <el-form-item label="姓名">
-            <span>{{ props.row.employeeName }}</span>
-          </el-form-item>
-          <el-form-item label="性别">
-            <template>
-              <span v-if="props.row.sex == 0">女</span>
-              <span v-if="props.row.sex == 1">男</span>
+        <el-table-column type="expand">
+            <template slot-scope="props">
+                <el-form label-position="left" inline class="demo-table-expand">
+                    <el-form-item label="工号">
+                        <span>{{ props.row.employeeId }}</span>
+                    </el-form-item>
+                    <el-form-item label="姓名">
+                        <span>{{ props.row.employeeName }}</span>
+                    </el-form-item>          
+                    <el-form-item label="性别">
+                        <template>
+                            <span v-if="props.row.sex == 0">女</span>
+                            <span v-if="props.row.sex == 1">男</span>
+                        </template>
+                    </el-form-item>
+                    <el-form-item label="出生日期" :formatter="dateForma" props="birth">
+                        <span>{{ props.row.birth }}</span>
+                    </el-form-item>
+                    <el-form-item label="身份证号">
+                        <span>{{ props.row.idNo }}</span>
+                    </el-form-item>
+                    <el-form-item label="婚姻状态">
+                        <template >
+                            <span v-if="props.row.maritalStatus == 0">未婚</span>
+                            <span v-if="props.row.maritalStatus == 1">已婚</span>
+                        </template>
+                    </el-form-item>
+                    <el-form-item label="民族">
+                        <span>{{ props.row.nation }}</span>
+                    </el-form-item>
+                    <el-form-item label="政治面貌">
+                        <template>
+                            <span v-if="props.row.politicCountenance == 0">共青团员</span>
+                            <span v-if="props.row.politicCountenance == 1">中共预备党员</span>
+                            <span v-if="props.row.politicCountenance == 2">中共党员</span>
+                            <span v-if="props.row.politicCountenance == 3">群众</span>
+                        </template>           
+                    </el-form-item>
+                    <el-form-item label="地址">
+                        <span>{{props.row.address}}</span>
+                    </el-form-item>
+                    <el-form-item label="邮箱">
+                        <span>{{ props.row.email }}</span>
+                    </el-form-item>
+                    <el-form-item label="电话">
+                        <span>{{ props.row.phone }}</span>
+                    </el-form-item>
+                    <el-form-item label="职位">
+                        <span>{{ props.row.deptName }}</span>
+                    </el-form-item>       
+                    <el-form-item label="教育背景">
+                        <template>
+                            <span v-if="props.row.educationalBackground == 0">大专</span>
+                            <span v-if="props.row.educationalBackground == 1">本科</span>
+                            <span v-if="props.row.educationalBackground == 2">硕博</span>
+                            <span v-if="props.row.educationalBackground == 3">其他</span>
+                        </template>
+                    </el-form-item>
+                    <el-form-item label="毕业学校">
+                        <span>{{ props.row.school }}</span>
+                    </el-form-item>    
+                </el-form>
             </template>
-          </el-form-item>
-          <el-form-item label="出生日期" :formatter="dateForma" prop="birth">
-            <span>{{ props.row.birth }}</span>
-          </el-form-item>
-          <el-form-item label="身份证号">
-            <span>{{ props.row.idNo }}</span>
-          </el-form-item>
-          <el-form-item label="婚姻状态">
-            <template >
-              <span v-if="props.row.maritalStatus == 0">未婚</span>
-              <span v-if="props.row.maritalStatus == 1">已婚</span>
+        </el-table-column>
+        <el-table-column
+            label="工号"
+            prop="employeeId">
+        </el-table-column>
+        <el-table-column
+            label="姓名"
+            prop="employeeName">
+        </el-table-column>   
+        <el-table-column
+            label="职位"
+            prop="deptName">
+        </el-table-column>
+        <el-table-column
+            label="联系电话"
+            prop="phone">
+        </el-table-column>
+        <el-table-column
+            label="入职时间"
+            prop="entryTime" 
+            :formatter="dateForma">
+        </el-table-column>
+        <el-table-column prop="status" label="在职状态">
+            <template slot-scope="scope">
+                <el-switch v-model="scope.row.status"
+                    disabled
+                    active-value="1"
+                    inactive-value="0">
+                </el-switch>
             </template>
-          </el-form-item>
-          <el-form-item label="民族">
-            <span>{{ props.row.nation }}</span>
-          </el-form-item>
-          <el-form-item label="政治面貌">
-            <template>
-              <span v-if="props.row.politicCountenance == 0">共青团员</span>
-              <span v-if="props.row.politicCountenance == 1">中共预备党员</span>
-              <span v-if="props.row.politicCountenance == 2">中共党员</span>
-              <span v-if="props.row.politicCountenance == 3">群众</span>
-            </template>
-            
-          </el-form-item>
-          <el-form-item label="邮箱">
-            <span>{{ props.row.email }}</span>
-          </el-form-item>
-          <el-form-item label="电话">
-            <span>{{ props.row.phone }}</span>
-          </el-form-item>
-          <el-form-item label="单位">
-            <span>{{ props.row.deptName }}</span>
-          </el-form-item>
-          <el-form-item label="职位">
-            <span>{{ props.row.positionName }}</span>
-          </el-form-item>
-          
-          <el-form-item label="教育背景">
-            <template>
-              <span v-if="props.row.educationalBackground == 0">大专</span>
-              <span v-if="props.row.educationalBackground == 1">本科</span>
-              <span v-if="props.row.educationalBackground == 2">硕博</span>
-              <span v-if="props.row.educationalBackground == 3">其他</span>
-            </template>
-          </el-form-item>
-          <el-form-item label="毕业学校">
-            <span>{{ props.row.school }}</span>
-          </el-form-item>
-          
-          <el-form-item label="入职时间" :formatter="dateForma">
-            <span>{{ props.row.entryTime }}</span>
-          </el-form-item>
-          <el-form-item label="状态">
-            <template >
-              <el-switch v-model="props.row.status"
-                     disabled
-                     active-value="1"
-                     inactive-value="0">
-              </el-switch>
-            </template>
-          </el-form-item>
-          <!--<el-form-item label="合同期" :formatter="dataForma">
-            <span>{{ props.row.contractTerm }}</span>
-          </el-form-item>-->
-          
-        </el-form>
-      </template>
-    </el-table-column>
-    <el-table-column
-      label="姓名"
-      prop="employeeName">
-    </el-table-column>
-    <el-table-column
-      label="职位"
-      prop="positionName">
-    </el-table-column>
-    <el-table-column
-      label="联系电话"
-      prop="phone">
-    </el-table-column>
-    <el-table-column
-      label="入职时间"
-      prop="entryTime" :formatter="dateForma">
-    </el-table-column>
+        </el-table-column>
     <el-table-column label="操作" width="160" fixed="right">
         <template slot-scope="scope">
           <el-button type="primary"
@@ -158,10 +148,8 @@
       </el-table-column>
   </el-table>
     <br>
-
-    
     <!--分页条-->
-    <el-pagination
+    <!--<el-pagination
       style="padding-top:15px"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -171,7 +159,8 @@
       layout="total, sizes, prev, pager, next, jumper"
       :total="total"
     ></el-pagination>
-
+-->
+    
     <el-dialog title="添加工资信息" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="员工姓名">
@@ -255,7 +244,7 @@
       </div>
     </el-dialog>
 
-    <br>
+    
     <el-divider>工资管理列表</el-divider>
     <br>
     <!--表格数据及操作-->
@@ -285,7 +274,7 @@
     </el-table>
 
     <!--分页条-->
-    <el-pagination
+    <!--<el-pagination
       style="padding-top:15px"
       @size-change="handleSizeChange2"
       @current-change="handleCurrentChange2"
@@ -294,7 +283,8 @@
       :page-size="pageSize2"
       layout="total, sizes, prev, pager, next, jumper"
       :total="total2"
-    ></el-pagination>
+    ></el-pagination>-->
+    
   </el-card>
 </template>
 

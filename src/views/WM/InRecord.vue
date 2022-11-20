@@ -125,7 +125,7 @@ import request from '@/utils/request'
 
   //导出
 exp(){
-  window.open("http://localhost:9090/InRecord/export")
+  window.open("http://localhost:8081/InRecord/export")
 },
 
  

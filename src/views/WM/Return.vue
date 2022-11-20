@@ -62,7 +62,7 @@
                   icon="el-icon-info"
                   icon-color="red"
                   title="确定删除吗？"
-                  @confirm="del(scope.row.inboundNumber)"
+                  @confirm="del(scope.row.outboundNumber)"
                 >
                 <el-button type="danger" size="small" slot="reference">删除<i class="el-icon-remove-outline"></i></el-button>
                 </el-popconfirm>
@@ -144,6 +144,7 @@ import request from '@/utils/request'
               warehousingQuantity:"",
               inOperator:"",
               warehousingTime:"",
+              outboundNumber:"",
               form:{},
               msg: "xpy",
     collapseBtnClass: 'el-icon-s-fold',
@@ -205,8 +206,8 @@ this.form.warehousingQuantity=0
     },
 
     //删除
-    del(inboundNumber) {
-     request.delete("/Return/"+inboundNumber).then(res=>{
+    del(outboundNumber) {
+     request.delete("/Return/"+outboundNumber).then(res=>{
       if(res){
     this.$message.success("删除成功")
   
@@ -237,7 +238,7 @@ console.log(val)
 
   //导出
 exp(){
-  window.open("http://localhost:9090/Return/export")
+  window.open("http://localhost:8081/Return/export")
 },
 
  

@@ -41,7 +41,11 @@ const routes = [
             },
             {
                 path: '/LeaveArchives', name: 'LeaveArchives', component: () => import('../views/EL/LeaveArchives.vue')
+            }, 
+            {
+                path: '/HealthArchives', name: 'HealthArchives', component: () => import('../views/EL/HealthArchives.vue')
             },
+
 
             {path: '/priceSet', name: 'PriceSet', component: () => import('../views/DM/PriceSet.vue')},
             {path: '/recipeIndex', redirect:'/recipe' ,name: 'RecipeIndex', component: () => import('../views/DM/RecipeIndex.vue'),
@@ -106,6 +110,7 @@ const routes = [
             {
                 path: '/Reserve', name: 'Reserve', component: () => import('../views/CW/Reserve.vue')
             },
+            
         ] 
     },
     {

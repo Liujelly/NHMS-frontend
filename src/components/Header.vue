@@ -23,8 +23,11 @@
           }
         },
         methods:{
-          toHome:function(){
-           this.$router.push('/home')
+          toHome(){
+            if(this.relName!="游客"){
+              this.$router.push('/home')
+            }
+
           },
           toLogin(){
              this.$router.push('/')

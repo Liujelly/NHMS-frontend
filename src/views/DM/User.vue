@@ -245,7 +245,7 @@
             
                 this.timer = setTimeout(()=>{   //设置延迟执行
                     this.load();
-                },100);
+                },300);
             }
         },
          created(){

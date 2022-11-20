@@ -11,7 +11,7 @@
         </el-form-item>
         <el-form-item style="margin: 10px 0; text-align: right">
           <el-button type="primary" size="small"  autocomplete="off" @click="login">登录</el-button>
-          <el-button type="warning" size="small"  autocomplete="off">游客登录</el-button>
+          <el-button type="warning" size="small"  autocomplete="off" @click="youkeLogin">游客登录</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -50,6 +50,33 @@ export default {
 
           if (this.$store.state.token) { 
           this.$router.push('/home') 
+          console.log(this.$store.state.token) 
+          } else { 
+          this.$router.replace('/login'); 
+          } 
+
+        }else if(res.code==101){
+          this.$message.error(res.msg)
+        }else if(res.code==200){
+          this.$message.error(res.msg)
+        }else if(res.code==400){
+          this.$message.error(res.msg)
+        }
+      });
+    },
+    youkeLogin(){
+      this.request.get("http://localhost:8081/loginJudge",{
+        params:{
+          userName:"youke",
+          password:"youke",
+        }
+      }).then(res=>{
+        if(res.code==100){
+          this.$message.success("游客登录成功")
+          this.$store.commit('set_token', res.token)
+
+          if (this.$store.state.token) { 
+          this.$router.push('/index') 
           console.log(this.$store.state.token) 
           } else { 
           this.$router.replace('/login'); 

@@ -138,11 +138,12 @@ export default {
         this.visible='';
       }
     },
-    handleSelect(){
+    handleSelect(value){
       const _this=this;
+      console.log(value)
       this.request.get("http://localhost:8081/findRecipeDetail",{
         params:{
-          index:this.value
+          index:value
         }
       }).then(res=>{
                 console.log(res)
@@ -164,7 +165,7 @@ export default {
                       clearTimeout(this.timer);  //清除延迟执行 
             
             this.timer = setTimeout(()=>{   //设置延迟执行
-                this.reload();
+                this.load();
             },500);
             this.dialogFormVisible=false;
     },

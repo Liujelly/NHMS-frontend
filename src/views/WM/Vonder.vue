@@ -32,7 +32,7 @@
         <el-table-column type="selection" width="55"></el-table-column>
           <el-table-column prop="supplierNum" label="供应商ID" width="120">
           </el-table-column>
-          <el-table-column prop="supplierName" label="供应商名称" width="120">
+          <el-table-column prop="supplierName" label="供应商名称" >
           </el-table-column>
           <el-table-column prop="supplierAddress" label="规供应商地址" >
           </el-table-column>
@@ -159,7 +159,7 @@ import request from '@/utils/request'
 
   //导出
 exp(){
-  window.open("http://localhost:9090/Supplier/export")
+  window.open("http://localhost:8081/Supplier/export")
 },
 
   // 新增

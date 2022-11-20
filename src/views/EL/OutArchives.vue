@@ -2,7 +2,7 @@
   <div>
     <el-main>
         <div style="margin-top:-20px">
-            <p style="font-size:20px;font-weight: bold;">退住档案</p>
+            <p style="font-size:20px;font-weight: bold;">退院档案</p>
         </div>
       <div class="function" style="margin-bottom: 30px;">
         <el-input
@@ -30,7 +30,7 @@
         <el-table-column prop="tel" label="电话"></el-table-column>
         <el-table-column prop="address" label="地址"></el-table-column>
         <el-table-column prop="idcard" label="身份证号"></el-table-column>
-        <el-table-column prop="outtime" label="退住时间"></el-table-column>
+        <el-table-column prop="outtime" label="退院时间"></el-table-column>
         <el-table-column label="操作"  width="200" align="center">
           <template slot-scope="scope">
             <el-button type="success" @click="edit(scope.row)">回溯<i class="el-icon-edit"></i></el-button>

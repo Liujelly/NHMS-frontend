@@ -2,7 +2,7 @@
   <div>
     <el-main>
         <div style="margin-top:-20px">
-            <p style="font-size:20px;font-weight: bold;">老人入住信息管理</p>
+            <p style="font-size:20px;font-weight: bold;">老人入院信息管理</p>
         </div>
       <div class="function" style="margin-bottom: 30px;">
         <el-button  type="success"  style="margin-left:5px;margin-right:10px" @click="addcheckin">新增</el-button>

@@ -1,9 +1,12 @@
 <template>
-    <div>
+    <div v-loading="loading"
+        element-loading-text="拼命加载中"
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(0, 0, 0, 0)">
         <div style="margin-top:-20px">
             <p style="font-size:20px;font-weight: bold;">操作日志</p>
         </div>
-        <div >
+        <div>
             <el-input  
                 style="margin-left:15px" 
                 class="Search"
@@ -64,7 +67,7 @@
             return {
                 checkedKeys:[],
                 defaultProps:{children: 'children',label: 'name'},
-                                    
+                loading: false,                    
                 activeColItem:-1,
                 treeData: [{
                 id: 1,
@@ -77,33 +80,36 @@
                         label: '老人档案'
                         }, {
                         id: 19,
-                        label: '入住档案'
+                        label: '入院档案'
                         },{
                         id: 20,
-                        label: '退住档案'
+                        label: '退院档案'
                         }, {
                         id: 21,
                         label: '请假档案'
+                        },{
+                        id: 64,
+                        label: '健康档案'
                         }]
                     },{
                     id: 22,
-                    label: '入住管理',
+                    label: '入院管理',
                     children: [{
                         id: 23,
-                        label: '入住信息管理'
+                        label: '入院信息管理'
                         }, {
                         id: 24,
-                        label: '入住批准'
+                        label: '入院批准'
                         }]
                     }, {
                     id: 25,
-                    label: '退住管理',
+                    label: '退院管理',
                     children: [{
                         id: 26,
-                        label: '退住信息管理'
+                        label: '退院信息管理'
                         }, {
                         id: 27,
-                        label: '退住批准'
+                        label: '退院批准'
                         }]
                     }, {
                     id: 28,
@@ -117,7 +123,7 @@
                         }]
                     }, {
                     id: 31,
-                    label: '入住分配'
+                    label: '宿舍分配'
                     }]
                 }, {
                 id: 2,
@@ -327,6 +333,7 @@
                 }
             },
             updateRoleMenu(roleId,index){
+                this.loading=true
                 let tree = this.$refs.tree[index];
                 let selectedMenuIds = tree.getCheckedKeys(true);
                 let treeMenuKeys={
@@ -336,9 +343,12 @@
                 
                 this.request.post("http://localhost:8081/updateRoleMenu",treeMenuKeys).then(res=>{
                         if(res){
+                            
                             this.$message.success("修改成功")
+                            this.loading=false
                         }
                     })
+                    
             },
             deleteRole(id,name,nameZh){
                 let role={id,name,nameZh}

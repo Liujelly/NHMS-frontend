@@ -208,7 +208,9 @@ export default {
 
         this.totalNum=res.totalNum;
         this.phyNum=res.phyNum;
-        this.exam=this.phyNum/this.totalNum*100
+        let tem=this.phyNum/this.totalNum*100
+        
+        this.exam=parseFloat(tem).toFixed(2)
       })
     },
     cancel(){

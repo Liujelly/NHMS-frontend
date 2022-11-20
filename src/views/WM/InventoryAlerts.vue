@@ -232,12 +232,12 @@ import request from '@/utils/request'
       },
     load () {
       if(this.mId==""){
-          request.get( "/page2?pageNum="+this.pageNum+"&pageSize="+this.pageSize+"&mName="+this.mName+"&mSpecification="+this.mSpecification).then(res=>{console.log(res)
+          request.get( "/MaterialController/page2?pageNum="+this.pageNum+"&pageSize="+this.pageSize+"&mName="+this.mName+"&mSpecification="+this.mSpecification).then(res=>{console.log(res)
       this.tableData=res.date
       this.total=res.total
       })
       }else{
-        request.get( "/page1?pageNum="+this.pageNum+"&pageSize="+this.pageSize+"&mId="+this.mId).then(res=>{console.log(res)
+        request.get( "/MaterialController/page1?pageNum="+this.pageNum+"&pageSize="+this.pageSize+"&mId="+this.mId).then(res=>{console.log(res)
       this.tableData=res.date
       this.total=res.total
       })
@@ -246,7 +246,7 @@ import request from '@/utils/request'
   },
   //导出
 exp(){
-  window.open("http://localhost:9090/export")
+  window.open("http://localhost:8081/export")
 },
   // 新增
   handleAdd(){

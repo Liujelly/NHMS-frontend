@@ -1,23 +1,19 @@
 <template>
   <el-card class="box-card">
-    考核管理
-    <hr>
-    <br>
+    <div style="margin-top:-20px">
+            <p style="font-size:20px;font-weight: bold;">考核管理</p>
+        </div>
     <el-row style="display: flex;justify-content: flex-start;">
       <!--搜索框-->
       <span style="">
-        <el-input v-model="keyword" style="width: 200px" placeholder="请输入被考核人"
-                  size="mini"></el-input>
-        <el-button type="success" @click="selectTable" icon="el-icon-search"
-                   v-has="'check:list'"
-                   size="mini" >搜索</el-button>
+        <el-input v-model="keyword" style="width: 200px; height: 20px;" placeholder="请输入员工姓名"></el-input>
+                  <span style="margin-left: 10px; height: 20px;">
+            <el-button type="success" @click="selectTable" icon="el-icon-search">查询</el-button>
+        </span>
       </span>
       <!--新增按钮-->
-      <span style="display: inline-block;margin-left: 30px">
-        <el-button type="primary" icon="el-icon-circle-plus-outline"
-                   @click="addDialog" size="mini" v-has="'check:add'"
-                   round>新增
-        </el-button>
+      <span style="display: inline-block;margin-left: 20px; height: 20px;">
+          <el-button type="primary" icon="el-icon-circle-plus-outline" @click="addDialog" round>新增</el-button>
       </span>
     </el-row>
 
@@ -66,7 +62,7 @@
     <br>
 
     <!--分页条-->
-    <el-pagination
+    <!--<el-pagination
       style="padding-top:15px"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -75,7 +71,8 @@
       :page-size="pageSize"
       layout="total, sizes, prev, pager, next, jumper"
       :total="total"
-    ></el-pagination>
+    ></el-pagination>-->
+    
 
     <el-dialog title="添加考核" :visible.sync="dialogFormVisible">
       <el-form :model="form">

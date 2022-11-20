@@ -11,9 +11,14 @@
                 <div style="margin-top:-20px;cursor:default">
                   <p style="font-size:20px;font-weight: bold;color:#909399">主页</p>
                 </div>
-                <div style="margin-top:-65px;float:right;cursor:default" >
-                  <p style="font-size:10px;font-weight: bold;color:#409EFF" @click="toFunc">进入功能页面></p>
+                <div style="margin-top:-58px;margin-right:1200px;float:right;cursor:default" >
+                  <p style="font-size:15px;font-weight: bold;color:#409EFF" @click="toFunc">进入功能页面></p>
                 </div>
+              
+                <div style="margin-top:-125px;float:right;cursor:default;width:500px">
+                <notepad ></notepad>
+                </div>
+
                 <el-select v-model="value" placeholder="请选择菜谱" @change="handleSelect(value)">
                     <el-option
                     v-for="item in options"
@@ -69,7 +74,38 @@
                       </template>
                   </el-table-column>
                   </el-table>
+                  <el-card class="box-card" style="margin-top:20px">
+                    <div slot="header" class="clearfix">
+                        <span>常用功能</span>
+                        <el-button style="float: right; padding: 3px 0" type="text" @click="handleAddFuc">添加功能</el-button>
+                    </div>
+                    <div v-for="item in cardList" :key="item" class="text item">
+                        <div @click="toFuc(item.path)" style="cursor:default">{{ item.menuZh +'>'}}</div>
+                    </div>
+                  </el-card>
               </div>
+              <el-dialog title="添加功能" :visible.sync="dialogFormVisible" width="20%">
+                  <el-form label-width="80px" size="small" :model="form" >
+                      <el-form-item>
+                          <el-select v-model="form.fuc" placeholder="请选择功能" style="margin-left:-50px">
+                          <el-option
+                          v-for="item in menuOptions"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value">
+                          </el-option>
+                      </el-select>
+                      </el-form-item>
+                  </el-form>
+                  <div slot="footer" class="dialog-footer">
+                      <el-button @click="dialogFormVisible = false">取 消</el-button>
+                      <el-button type="primary" @click="updateUsualMenu(form)">确 定</el-button>
+                  </div>
+              </el-dialog>
+
+              
+
+   
 
           </el-main>
         </el-container>
@@ -82,23 +118,37 @@
  
 
  import Header from'@/components/Header.vue';
+ import Notepad from'@/components/Notepad.vue';
   export default {
     name:"index",
     inject: ['reload'],
-    components:{
 
-      Header
+    components:{
+      Header,
+      Notepad,
+
     },
     data() {
         return {
         options: [],
+        menuOptions:[],
         value: 0,
         recipeData: [],
+        cardList:[],
+        dialogFormVisible:false,      
+        form:{
+          fuc:''
+        }
         };
     },
     methods:{
       load(){
           const _this=this
+          this.request.get("http://localhost:8081/getUsualFuc").then(res=>{
+                console.log(res)
+                _this.cardList=res.data;
+                _this.menuOptions=res.options
+            })
           this.request.get("http://localhost:8081/findRecipe").then(res=>{
               console.log(res)
               _this.options=res.options;
@@ -125,7 +175,30 @@
         },
         toFunc(){
           this.$router.push('/index')
+        },
+         toFuc(path){
+                this.$router.push(path)
+        },
+        handleAddFuc(){
+            this.dialogFormVisible = true
+        },
+        updateUsualMenu(form){
+          const _this=this;          
+          console.log(form.fuc);
+           this.request.post("http://localhost:8081/updateUsualFuc",form.fuc).then(res=>{
+             if(res){
+              this.$message.success("添加成功")
+             }
+          });
+                this.dialogFormVisible=false
+                clearTimeout(this.timer);  //清除延迟执行 
+            
+                this.timer = setTimeout(()=>{   //设置延迟执行
+                    this.load();
+                },100);
+
         }
+
         
     },
     created(){
@@ -150,6 +223,27 @@
     white-space: nowrap;
 }
 } 
+ .text {
+    font-size: 14px;
+  }
+
+  .item {
+    margin-bottom: 18px;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+  .clearfix:after {
+    clear: both
+  }
+
+  .box-card {
+    width: 480px;
+  }
+  
 
 </style>
 
