@@ -85,7 +85,7 @@
         methods:{
             load(){
                 const _this=this
-                this.request.get("http://localhost:8081/findAllLog",{
+                this.request.get("/findAllLog",{
                 params:{
                     pageNum:this.pageNum,
                     pageSize:this.pageSize
@@ -108,7 +108,7 @@
             },
             findComplex(){
                 const _this=this
-                this.request.get("http://localhost:8081/logFindComplex",{
+                this.request.get("/logFindComplex",{
                 params:{
                     pageNum:this.pageNum,
                     pageSize:this.pageSize,

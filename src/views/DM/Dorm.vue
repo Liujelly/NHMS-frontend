@@ -54,7 +54,7 @@
             prop="bedStatus"
             label="床位状态"
             width="100"
-            :filters="[{ text: '未满员', value: '未满员' }, { text: '满员', value: '满员' }]"
+            :filters="[{ text: '未满员', value: '未满员' }, { text: '已满员', value: '已满员' }]"
             :filter-method="filterTag"
             filter-placement="bottom-end">
             <template slot-scope="scope">
@@ -155,7 +155,7 @@
         methods: {
             load(){
                 const _this=this
-                this.request.get("http://localhost:8081/dormFindAll",{
+                this.request.get("/dormFindAll",{
                 params:{
                     pageNum:this.pageNum,
                     pageSize:this.pageSize
@@ -199,7 +199,7 @@
                     params.push(item.id);       // 添加所有需要删除数据的id到一个数组，post提交过去
                 });
 
-                this.request.post("http://localhost:8081/dormDelete",params).then(res=>{
+                this.request.post("/dormDelete",params).then(res=>{
                 if(res){
                     this.$message.success("删除成功")
                 }else{
@@ -214,7 +214,7 @@
 
             },
             save(){
-                    this.request.post("http://localhost:8081/dormAdd",this.form).then(res=>{
+                    this.request.post("/dormAdd",this.form).then(res=>{
                     if(res){
                         this.$message.success("添加成功")
                     }else{
@@ -229,7 +229,7 @@
             },
             findComplex(){
                 const _this=this
-                this.request.get("http://localhost:8081/dormFindComplex",{
+                this.request.get("/dormFindComplex",{
                 params:{
                     pageNum:this.pageNum,
                     pageSize:this.pageSize,
@@ -247,7 +247,7 @@
                 this.input2=''
             },
             exp(){
-                window.open("http://localhost:8081/DormExport")
+                window.open("/DormExport")
             },
             filterTag(value, row) {
                 return row.bedStatus === value;

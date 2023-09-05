@@ -144,16 +144,16 @@
     methods:{
       load(){
           const _this=this
-          this.request.get("http://localhost:8081/getUsualFuc").then(res=>{
+          this.request.get("/getUsualFuc").then(res=>{
                 console.log(res)
                 _this.cardList=res.data;
                 _this.menuOptions=res.options
             })
-          this.request.get("http://localhost:8081/findRecipe").then(res=>{
+          this.request.get("/findRecipe").then(res=>{
               console.log(res)
               _this.options=res.options;
           });
-          this.request.get("http://localhost:8081/findRecipeDetail",{
+          this.request.get("/findRecipeDetail",{
               params:{
               index:this.value
               }
@@ -164,7 +164,7 @@
           },
           handleSelect(){
           const _this=this;
-          this.request.get("http://localhost:8081/findRecipeDetail",{
+          this.request.get("/findRecipeDetail",{
             params:{
               index:this.value
             }
@@ -185,7 +185,7 @@
         updateUsualMenu(form){
           const _this=this;          
           console.log(form.fuc);
-           this.request.post("http://localhost:8081/updateUsualFuc",form.fuc).then(res=>{
+           this.request.post("/updateUsualFuc",form.fuc).then(res=>{
              if(res){
               this.$message.success("添加成功")
              }

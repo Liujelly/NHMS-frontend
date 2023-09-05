@@ -134,7 +134,7 @@ export default {
   },
   methods: {
     del(id){
-      request.delete("http://localhost:8081/retreat/"+id).then(res=>{
+      request.delete("/retreat/"+id).then(res=>{
         if(res){
           this.$message.success("保存成功")
           this.dialogFormVisible1=false
@@ -152,7 +152,7 @@ export default {
     },
     save1()
     {
-      request.post("http://localhost:8081/retreatedit",this.form1).then(res=>{
+      request.post("/retreatedit",this.form1).then(res=>{
         if(res){
           this.$message.success("保存成功")
           this.dialogFormVisible1=false
@@ -165,7 +165,7 @@ export default {
     },
     save()
     {
-      request.post("http://localhost:8081/retreatadd",this.value).then(res=>{
+      request.post("/retreatadd",this.value).then(res=>{
         this.$message.success("保存成功")
         this.dialogFormVisible=false
         this.load()
@@ -181,7 +181,7 @@ export default {
     },
     getid()
     {
-      request.get("http://localhost:8081/retreatid").then(res=>{
+      request.get("/retreatid").then(res=>{
         console.log(res)
         this.options=res.data
       })
@@ -193,7 +193,7 @@ export default {
     },
     load()
     {
-      request.get("http://localhost:8081/page4",{
+      request.get("/page4",{
         params:{
           pageNum:this.pageNum,
           pageSize:this.pageSize,

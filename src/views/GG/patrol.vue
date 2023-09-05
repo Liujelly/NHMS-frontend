@@ -120,7 +120,7 @@ export default {
   },
   methods: {
     load() {
-      request.get("http://localhost:8081/pagepatrol", {
+      request.get("/pagepatrol", {
         params: {
           pageNum: this.pageNum,
           pageSize: this.pageSize,
@@ -135,7 +135,7 @@ export default {
     },
     save() {
       console.log(this.form)
-      request.post("http://localhost:8081/addpatrol", this.form).then(res => {
+      request.post("/addpatrol", this.form).then(res => {
         this.$message.success("保存成功")
         this.dialogFormVisible = false
         this.load()
@@ -151,7 +151,7 @@ export default {
     },
 
     del(pId) {
-      request.delete("http://localhost:8081/deletepatrol/" + pId).then(res => {
+      request.delete("/deletepatrol/" + pId).then(res => {
         if (res) {
           this.$message.success("删除成功")
           this.load()

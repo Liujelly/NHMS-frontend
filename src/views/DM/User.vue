@@ -156,7 +156,7 @@
         methods:{
             load(){
                 const _this=this
-                this.request.get("http://localhost:8081/findAllUser",{
+                this.request.get("/findAllUser",{
                 params:{
                     pageNum:this.pageNum,
                     pageSize:this.pageSize
@@ -180,7 +180,7 @@
             },
             findComplex(){
                 const _this=this
-                this.request.get("http://localhost:8081/userFindComplex",{
+                this.request.get("/userFindComplex",{
                 params:{
                     pageNum:_this.pageNum,
                     pageSize:_this.pageSize,
@@ -200,7 +200,7 @@
             },
             statusChange(row){
                 const _this=this
-                this.request.post("http://localhost:8081/updateEnabled",row).then(res=>{
+                this.request.post("/updateEnabled",row).then(res=>{
                 if(res){
                     this.$message.success("修改状态成功")
                 }
@@ -208,12 +208,11 @@
             },
             handleEditRole(row){
                 this.form=row
-                this.value=row.roleId
                 this.dialogFormVisible=true
             },
             updateRole(form){
                 const _this=this
-                this.request.post("http://localhost:8081/updateRole",form).then(res=>{
+                this.request.post("/updateRole",form).then(res=>{
                 if(res){
                     _this.$message.success("修改角色成功")
                 }else{
@@ -233,7 +232,7 @@
             },
             save(form){
                 const _this=this
-                this.request.post("http://localhost:8081/addUser",form).then(res=>{
+                this.request.post("/addUser",form).then(res=>{
                 if(res){
                     _this.$message.success("添加用户成功")
                 }else{

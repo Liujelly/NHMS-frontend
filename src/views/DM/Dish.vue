@@ -147,7 +147,7 @@
         methods: {
             load(){
                 const _this=this
-                this.request.get("http://localhost:8081/dishFindAll",{
+                this.request.get("/dishFindAll",{
                 params:{
                     pageNum:this.pageNum,
                     pageSize:this.pageSize
@@ -186,7 +186,7 @@
             },
             save(){
                 if(this.dialogFuc=="add"){
-                    this.request.post("http://localhost:8081/dishAdd",this.form).then(res=>{
+                    this.request.post("/dishAdd",this.form).then(res=>{
                     if(res){
                         this.$message.success("添加成功")
                     }else{
@@ -194,7 +194,7 @@
                     }
                 })
                 }else if(this.dialogFuc=="edit"){
-                    this.request.post("http://localhost:8081/dishUpdate",this.form).then(res=>{
+                    this.request.post("/dishUpdate",this.form).then(res=>{
                     if(res){
                         this.$message.success("编辑成功")
                     }else{
@@ -206,7 +206,7 @@
             },
             findComplex(){
                 const _this=this
-                this.request.get("http://localhost:8081/dishFindComplex",{
+                this.request.get("/dishFindComplex",{
                 params:{
                     pageNum:this.pageNum,
                     pageSize:this.pageSize,
@@ -228,7 +228,7 @@
                 this.input4=''
             },
             exp(){
-                window.open("http://localhost:8081/dishExport")
+                window.open("/dishExport")
             }
 
         },

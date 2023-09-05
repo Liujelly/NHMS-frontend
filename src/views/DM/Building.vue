@@ -161,7 +161,7 @@
         methods: {
             load(){
                 const _this=this
-                this.request.get("http://localhost:8081/buildingFindAll",{
+                this.request.get("/buildingFindAll",{
                 params:{
                     pageNum:this.pageNum,
                     pageSize:this.pageSize
@@ -197,7 +197,7 @@
             },
             save(){
                 if(this.dialogFuc=="add"){
-                    this.request.post("http://localhost:8081/buildingAdd",this.form).then(res=>{
+                    this.request.post("/buildingAdd",this.form).then(res=>{
                     if(res){
                         this.$message.success("添加成功")
                     }else{
@@ -205,7 +205,7 @@
                     }
                 })
                 }else if(this.dialogFuc=="edit"){
-                    this.request.post("http://localhost:8081/buildingUpdate",this.form).then(res=>{
+                    this.request.post("/buildingUpdate",this.form).then(res=>{
                     if(res){
                         this.$message.success("编辑成功")
                     }else{
@@ -221,7 +221,7 @@
             },
             findComplex(){
                 const _this=this
-                this.request.get("http://localhost:8081/buildingFindComplex",{
+                this.request.get("/buildingFindComplex",{
                 params:{
                     pageNum:this.pageNum,
                     pageSize:this.pageSize,
@@ -241,7 +241,7 @@
                 this.input3=''
             },
             exp(){
-                window.open("http://localhost:8081/BuildingExport")
+                window.open("/BuildingExport")
             },
             nameRules(rule, value, callback){
                 if(this.dialogFuc=="add"){

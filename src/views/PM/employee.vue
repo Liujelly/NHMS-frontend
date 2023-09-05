@@ -550,7 +550,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/employee/listAllEmployee',
+          url: 'http://124.223.217.249:8081/employee/listAllEmployee',
           data: {
             limit: limit,
             page: page,
@@ -562,7 +562,7 @@
           }
           var redata = response.data.data.records;
           for (let i = 0; i < redata.length; i++) {
-            redata[i].photoUrl = 'http://localhost:8081/upload/showPhoto?fileName=' + redata[i].photoUrl
+            redata[i].photoUrl = 'http://124.223.217.249:8081/upload/showPhoto?fileName=' + redata[i].photoUrl
           }
           console.log(redata)
           this.tableData = redata;
@@ -592,7 +592,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/employee/addEmployee',
+          url: 'http://124.223.217.249:8081/employee/addEmployee',
           data: {
             employeeName: this.form.employeeName,
             sex: this.form.sex,
@@ -637,7 +637,7 @@
       removeThis(row) {
         this.$axios({
           method: 'delete',
-          url: 'http://localhost:8081/employee/delEmployee?id=' + row.id,
+          url: 'http://124.223.217.249:8081/employee/delEmployee?id=' + row.id,
         }).then((response) => {
           if (response.data.msg == "删除成功！") {
             this.$message.success(response.data.msg);
@@ -663,7 +663,7 @@
       editThis(row) {
         this.clearValue()
         if (row.photoUrl != null || row.photoUrl != "") {
-          this.imageUrl = 'http://localhost:8081/upload/showPhoto?fileName=' + row.photoUrl
+          this.imageUrl = 'http://124.223.217.249:8081/upload/showPhoto?fileName=' + row.photoUrl
         } else {
           this.imageUrl = "https://img0.baidu.com/it/u=3640332497,3089915405&fm=26&fmt=auto&gp=0.jpg"
         }
@@ -711,7 +711,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/employee/updEmployee',
+          url: 'http://124.223.217.249:8081/employee/updEmployee',
           data: {
             id: this.form.id,
             employeeName: this.form.employeeName,
@@ -761,7 +761,7 @@
       getDept() {
         this.$axios({
           method: 'post',
-          url: 'http://localhost:8081/dept/listAllDeptName',
+          url: 'http://124.223.217.249:8081/dept/listAllDeptName',
         }).then((response) => {
           this.deptList = JSON.parse(JSON.stringify(response.data.data[0]));
         }).catch((error) => {

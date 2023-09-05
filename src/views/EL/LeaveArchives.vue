@@ -75,7 +75,7 @@ export default {
       this.dialogFormVisible = true
     },
     save(){
-      request.post("http://localhost:8081/elderly",this.form).then(res=>{
+      request.post("/elderly",this.form).then(res=>{
         if(res){
           this.$message.success("保存成功")
           this.dialogFormVisible=false
@@ -93,7 +93,7 @@ export default {
     },
     load()
     {
-      request.get("http://localhost:8081/pagele",{
+      request.get("/pagele",{
         params:{
           pageNum:this.pageNum,
           pageSize:this.pageSize,

@@ -292,7 +292,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/check/listAllCheck',
+          url: 'http://124.223.217.249:8081/check/listAllCheck',
           data: {
             limit: limit,
             page: page,
@@ -318,7 +318,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/check/addCheck',
+          url: 'http://124.223.217.249:8081/check/addCheck',
           data: {
             checkName: this.form.checkName,
             time: this.form.time,
@@ -348,7 +348,7 @@
       removeThis(row) {
         this.$axios({
           method: 'delete',
-          url: 'http://localhost:8081/check/delCheck?id=' + row.id,
+          url: 'http://124.223.217.249:8081/check/delCheck?id=' + row.id,
         }).then((response) => {
           if (response.data.msg == "删除成功！") {
             this.$message.success(response.data.msg);
@@ -395,7 +395,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/check/updCheck',
+          url: 'http://124.223.217.249:8081/check/updCheck',
           data: {
             id: this.form.id,
             eid: this.form.eid,
@@ -431,7 +431,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/employee/listAllEmployee',
+          url: 'http://124.223.217.249:8081/employee/listAllEmployee',
           data: {
             limit: 20,
             page: 1,

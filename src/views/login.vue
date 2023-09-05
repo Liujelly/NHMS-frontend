@@ -38,7 +38,7 @@ export default {
   },
   methods:{
     login(){
-      this.request.get("http://localhost:8081/loginJudge",{
+      this.request.get("/loginJudge",{
         params:{
           userName:this.userForm.userName,
           password:this.userForm.password,
@@ -65,7 +65,7 @@ export default {
       });
     },
     youkeLogin(){
-      this.request.get("http://localhost:8081/loginJudge",{
+      this.request.get("/loginJudge",{
         params:{
           userName:"youke",
           password:"youke",

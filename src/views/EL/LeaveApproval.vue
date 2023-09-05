@@ -135,7 +135,7 @@ export default {
   },
   methods: {
     del(id){
-      request.delete("http://localhost:8081/leave/"+id).then(res=>{
+      request.delete("/leave/"+id).then(res=>{
         if(res){
           this.$message.success("保存成功")
           this.dialogFormVisible=false
@@ -153,7 +153,7 @@ export default {
     },
     save1()
     {
-      request.post("http://localhost:8081/leaveapproval",this.form1).then(res=>{
+      request.post("/leaveapproval",this.form1).then(res=>{
         this.$message.success("保存成功")
         this.dialogFormVisible1=false
         this.load()
@@ -162,7 +162,7 @@ export default {
 
     save()
     {
-      request.post("http://localhost:8081/leaveadd",this.form).then(res=>{
+      request.post("/leaveadd",this.form).then(res=>{
         this.$message.success("保存成功")
         this.dialogFormVisible=false
         this.load()
@@ -182,7 +182,7 @@ export default {
     },
     getid()
     {
-      request.get("http://localhost:8081/leaveid").then(res=>{
+      request.get("/leaveid").then(res=>{
         console.log(res)
         this.options=res.data
       })
@@ -193,7 +193,7 @@ export default {
     },
     load()
     {
-      request.get("http://localhost:8081/pagel",{
+      request.get("/pagel",{
         params:{
           pageNum:this.pageNum,
           pageSize:this.pageSize,

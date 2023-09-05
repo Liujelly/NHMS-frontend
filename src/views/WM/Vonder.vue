@@ -159,7 +159,7 @@ import request from '@/utils/request'
 
   //导出
 exp(){
-  window.open("http://localhost:8081/Supplier/export")
+  window.open("http://124.223.217.249:8081/Supplier/export")
 },
 
   // 新增

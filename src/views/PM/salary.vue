@@ -427,7 +427,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/employee/listAllEmployee',
+          url: 'http://124.223.217.249:8081/employee/listAllEmployee',
           data: {
             limit: limit,
             page: page,
@@ -456,7 +456,7 @@
       getDept() {
         this.$axios({
           method: 'post',
-          url: 'http://localhost:8081/dept/listAllDeptName',
+          url: 'http://124.223.217.249:8081/dept/listAllDeptName',
         }).then((response) => {
           this.deptList = response.data.data;
         }).catch((error) => {
@@ -479,7 +479,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/employeeSalary/salary',
+          url: 'http://124.223.217.249:8081/employeeSalary/salary',
           data: {
             salaryMonth: this.form.salaryMonth,
             employeeName: this.form.employeeName,
@@ -514,7 +514,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/employeeSalary/salarys',
+          url: 'http://124.223.217.249:8081/employeeSalary/salarys',
           data: {
             limit: limit,
             page: page
@@ -545,7 +545,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/employeeAttendance/getAttendanceInfo?eid=' + this.form.eid + '&mounth=' + this.form.salaryMonth,
+          url: 'http://124.223.217.249:8081/employeeAttendance/getAttendanceInfo?eid=' + this.form.eid + '&mounth=' + this.form.salaryMonth,
         }).then((response) => {
           this.showInfo = true;
           this.attendanceInfo = response.data.data;

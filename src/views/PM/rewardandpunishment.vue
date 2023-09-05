@@ -233,7 +233,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/rewards-and-punishments/listAllRewardsAndPunishments',
+          url: 'http://124.223.217.249:8081/rewards-and-punishments/listAllRewardsAndPunishments',
           data: {
             limit: limit,
             page: page,
@@ -259,7 +259,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/rewards-and-punishments/addRewardsAndPunishments',
+          url: 'http://124.223.217.249:8081/rewards-and-punishments/addRewardsAndPunishments',
           data: {
             reason: this.form.reason,
             time: this.form.time,
@@ -287,7 +287,7 @@
       removeThis(row) {
         this.$axios({
           method: 'delete',
-          url: 'http://localhost:8081/rewards-and-punishments/delRewardsAndPunishments?id=' + row.id,
+          url: 'http://124.223.217.249:8081/rewards-and-punishments/delRewardsAndPunishments?id=' + row.id,
         }).then((response) => {
           if (response.data.msg == "删除成功！") {
             this.$message.success(response.data.msg);
@@ -332,7 +332,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/rewards-and-punishments/updRewardsAndPunishments',
+          url: 'http://124.223.217.249:8081/rewards-and-punishments/updRewardsAndPunishments',
           data: {
             id: this.form.id,
             eid: this.form.eid,
@@ -366,7 +366,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/employee/listAllEmployee',
+          url: 'http://124.223.217.249:8081/employee/listAllEmployee',
           data: {
             limit: 20,
             page: 1,

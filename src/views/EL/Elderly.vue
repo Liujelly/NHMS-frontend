@@ -167,7 +167,7 @@ export default {
   },
   methods: {
     del(id){
-      request.delete("http://localhost:8081/elderly/"+id).then(res=>{
+      request.delete("/elderly/"+id).then(res=>{
         if(res){
           this.$message.success("保存成功")
           this.dialogFormVisible=false
@@ -189,7 +189,7 @@ export default {
       this.dialogFormVisible=true
     },
     save(){
-      request.post("http://localhost:8081/elderly",this.form).then(res=>{
+      request.post("/elderly",this.form).then(res=>{
         if(res){
           this.$message.success("保存成功")
           this.dialogFormVisible=false
@@ -207,7 +207,7 @@ export default {
     },
     load()
     {
-      request.get("http://localhost:8081/page2",{
+      request.get("/page2",{
         params:{
           pageNum:this.pageNum,
           pageSize:this.pageSize,
@@ -222,7 +222,7 @@ export default {
       )
     },
     exp() {
-      window.open("http://localhost:8081/exportelderly")
+      window.open("/exportelderly")
     },
     handleSizeChange(pageSize) {
       console.log(pageSize)

@@ -29,7 +29,7 @@ export default {
   },
   methods:{
     login(){
-      this.request.get("http://localhost:8081/login",{
+      this.request.get("/login",{
         params:{
           userName:this.userName,
           passWord:this.passWord,

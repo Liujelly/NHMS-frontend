@@ -194,7 +194,7 @@
             },
             save(){
                 if(this.dialogFuc=="add"){
-                    this.request.post("http://localhost:8081/roomAdd",this.form).then(res=>{
+                    this.request.post("/roomAdd",this.form).then(res=>{
                     if(res){
                         this.$message.success("添加成功")
                     }else{
@@ -202,7 +202,7 @@
                     }
                 })
                 }else if(this.dialogFuc=="edit"){
-                    this.request.post("http://localhost:8081/roomUpdate",this.form).then(res=>{
+                    this.request.post("/roomUpdate",this.form).then(res=>{
                     if(res){
                         this.$message.success("编辑成功")
                     }else{
@@ -214,7 +214,7 @@
             },
             findComplex(){
                 const _this=this
-                this.request.get("http://localhost:8081/roomFindComplex",{
+                this.request.get("/roomFindComplex",{
                 params:{
                     pageNum:this.pageNum,
                     pageSize:this.pageSize,
@@ -234,7 +234,7 @@
                 this.input3=''
             },
             exp(){
-                window.open("http://localhost:8081/roomExport")
+                window.open("/roomExport")
             },
             filterTag(value, row) {
                 return row.status === value;

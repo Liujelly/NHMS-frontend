@@ -130,7 +130,7 @@ export default {
   },
   methods: {
     del(id){
-      request.delete("http://localhost:8081/back/"+id).then(res=>{
+      request.delete("/back/"+id).then(res=>{
         if(res){
           this.$message.success("保存成功")
           this.dialogFormVisible=false
@@ -148,7 +148,7 @@ export default {
     },
     save1()
     {
-      request.post("http://localhost:8081/backapproval",this.form1).then(res=>{
+      request.post("/backapproval",this.form1).then(res=>{
         this.$message.success("保存成功")
         this.dialogFormVisible1=false
         this.load()
@@ -156,7 +156,7 @@ export default {
     },
     save()
     {
-      request.post("http://localhost:8081/backadd",this.form).then(res=>{
+      request.post("/backadd",this.form).then(res=>{
         this.$message.success("保存成功")
         this.dialogFormVisible=false
         this.load()
@@ -176,7 +176,7 @@ export default {
     },
     getid()
     {
-      request.get("http://localhost:8081/backid").then(res=>{
+      request.get("/backid").then(res=>{
         console.log(res)
         this.options=res.data
       })
@@ -187,7 +187,7 @@ export default {
     },
     load()
     {
-      request.get("http://localhost:8081/pageb",{
+      request.get("/pageb",{
         params:{
           pageNum:this.pageNum,
           pageSize:this.pageSize,

@@ -350,7 +350,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/employee/listAllEmployee',
+          url: 'http://124.223.217.249:8081/employee/listAllEmployee',
           data: {
             limit: limit,
             page: page,
@@ -379,7 +379,7 @@
       getDept() {
         this.$axios({
           method: 'post',
-          url: 'http://localhost:8081/dept/listAllDeptName',
+          url: 'http://124.223.217.249:8081/dept/listAllDeptName',
         }).then((response) => {
           this.deptList = response.data.data;
         }).catch((error) => {
@@ -398,7 +398,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/employeeAttendance/attendanceAdd',
+          url: 'http://124.223.217.249:8081/employeeAttendance/attendanceAdd',
           data: {
             eid: this.form.eid,
             deptName: this.form.deptName,
@@ -428,7 +428,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/employeeAttendance/attendances',
+          url: 'http://124.223.217.249:8081/employeeAttendance/attendances',
           data: {
             limit: limit,
             page: page

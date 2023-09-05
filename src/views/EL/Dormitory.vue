@@ -126,7 +126,7 @@ export default {
     },
     save()
     {
-      request.post("http://localhost:8081/dormitory",this.form).then(res=>{
+      request.post("/dormitory",this.form).then(res=>{
           this.$message.success("保存成功")
           this.dialogFormVisible=false
           this.load()
@@ -149,7 +149,7 @@ export default {
     },
     getid()
     {
-      request.get("http://localhost:8081/id").then(res=>{
+      request.get("/id").then(res=>{
         console.log(res)
         this.options=res.data
       })
@@ -160,7 +160,7 @@ export default {
     },
     load()
     {
-      request.get("http://localhost:8081/page3",{
+      request.get("/page3",{
         params:{
           pageNum:this.pageNum,
           pageSize:this.pageSize,

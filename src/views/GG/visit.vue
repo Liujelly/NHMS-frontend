@@ -123,7 +123,7 @@ export default {
   },
   methods: {
     load() {
-      request.get("http://localhost:8081/pagevisit", {
+      request.get("/pagevisit", {
         params: {
           pageNum: this.pageNum,
           pageSize: this.pageSize,
@@ -138,7 +138,7 @@ export default {
     },
     save() {
       console.log(this.form)
-      request.post("http://localhost:8081/addvisit", this.form).then(res => {
+      request.post("/addvisit", this.form).then(res => {
         this.$message.success("保存成功")
         this.dialogFormVisible = false
         this.load()
@@ -154,7 +154,7 @@ export default {
     },
 
     del(dId) {
-      request.delete("http://localhost:8081/deletevisit/" + vId).then(res => {
+      request.delete("/deletevisit/" + vId).then(res => {
         if (res) {
           this.$message.success("删除成功")
           this.load()

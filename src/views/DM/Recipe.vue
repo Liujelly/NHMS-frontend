@@ -10,9 +10,9 @@
                     >
                     </el-option>
                 </el-select>
-                <el-button  type="success"  style="margin-left:20px" @click="handleAdd" >创建菜谱</el-button>
-                <el-button type="warning" @click="RecipeEdit">编辑菜谱</el-button>
-                <el-button type="danger" @click="deleteRecipe">删除菜谱</el-button>
+                <el-button  type="success"  style="margin-left:20px" @click="handleAdd" >创建食谱</el-button>
+                <el-button type="warning" @click="RecipeEdit">编辑食谱</el-button>
+                <el-button type="danger" @click="deleteRecipe">删除食谱</el-button>
                 <el-button type="primary" @click="exp">导出数据</el-button>
         </div>
         <div  style="margin-top:20px">
@@ -64,7 +64,7 @@
               <el-button type="primary" class="update" :style="{display: visible}" @click="update">更新</el-button>
         </div>
         
-        <el-dialog title="创建菜谱" :visible.sync="dialogFormVisible" width="30%">
+        <el-dialog title="创建食谱" :visible.sync="dialogFormVisible" width="30%">
             <el-form label-width="80px" :model="form" size="small" :rules="rules">
                 <el-form-item label="食谱名"  prop="name">
                 <el-input v-model="form.name"  autocomplete="off"></el-input>
@@ -91,6 +91,7 @@ export default {
         return {
         rules:{
                 name:[
+                    {required:true,message:'必填项不得为空',trigger:'blur'},
                     {
                         validator:this.nameRules, trigger: 'change'
                     }
@@ -110,11 +111,11 @@ export default {
   methods:{
     load(){
         const _this=this
-            this.request.get("http://localhost:8081/findRecipe").then(res=>{
+            this.request.get("/findRecipe").then(res=>{
                 console.log(res)
                 _this.options=res.options;
             });
-            this.request.get("http://localhost:8081/findRecipeDetail",{
+            this.request.get("/findRecipeDetail",{
                 params:{
                 index:this.value
                 }
@@ -141,7 +142,7 @@ export default {
     handleSelect(value){
       const _this=this;
       console.log(value)
-      this.request.get("http://localhost:8081/findRecipeDetail",{
+      this.request.get("/findRecipeDetail",{
         params:{
           index:value
         }
@@ -155,7 +156,7 @@ export default {
         this.form={};
     },
     save(){
-        this.request.post("http://localhost:8081/addRecipe",this.form).then(res=>{
+        this.request.post("/addRecipe",this.form).then(res=>{
                 if(res){
                     this.$message.success("添加成功")
                 }else{
@@ -170,7 +171,7 @@ export default {
             this.dialogFormVisible=false;
     },
     update(){
-        this.request.post("http://localhost:8081/updateRecipeDetail",this.recipeData).then(res=>{
+        this.request.post("/updateRecipeDetail",this.recipeData).then(res=>{
                 if(res){
                     this.$message.success("更新成功")
                 }else{
@@ -181,7 +182,7 @@ export default {
     
     },
     deleteRecipe(){
-        this.request.post("http://localhost:8081/deleteRecipe",this.recipeData).then(res=>{
+        this.request.post("/deleteRecipe",this.recipeData).then(res=>{
                 if(res){
                     this.$message.success("删除成功")
                 }else{
@@ -195,7 +196,7 @@ export default {
             },500);
     },
     exp(){
-        window.open("http://localhost:8081/RecipeExport")
+        window.open("/RecipeExport")
     },
     nameRules(rule, value, callback){
         for(var i=0;i<this.options.length;i++){

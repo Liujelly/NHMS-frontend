@@ -94,7 +94,7 @@ export default {
   },
   methods: {
     load() {
-      request.get("http://localhost:8081/applytable/page", {
+      request.get("/applytable/page", {
         params: {
           pageNum: this.pageNum,
           pageSize: this.pageSize,
@@ -109,7 +109,7 @@ export default {
     },
     save() {
       console.log(this.form)
-      request.post("http://localhost:8081/applytable", this.form).then(res => {
+      request.post("/applytable", this.form).then(res => {
         if (res) {
           this.$message.success("保存成功")
           this.dialogFormVisible = false

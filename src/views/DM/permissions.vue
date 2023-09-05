@@ -4,7 +4,7 @@
         element-loading-spinner="el-icon-loading"
         element-loading-background="rgba(0, 0, 0, 0)">
         <div style="margin-top:-20px">
-            <p style="font-size:20px;font-weight: bold;">操作日志</p>
+            <p style="font-size:20px;font-weight: bold;">权限管理</p>
         </div>
         <div>
             <el-input  
@@ -289,7 +289,7 @@
         methods:{
             load(){
                 const _this=this
-                this.request.get("http://localhost:8081/getRole").then(res=>{
+                this.request.get("/getRole").then(res=>{
                 console.log(res)
                  _this.roles=res
             })
@@ -300,7 +300,7 @@
                 let name=this.input1
                 let nameZh=this.input2
                 let role={name,nameZh}
-                this.request.post("http://localhost:8081/addRole",role).then(res=>{
+                this.request.post("/addRole",role).then(res=>{
                     if(res){
                         this.$message.success("添加成功")
                     }else{
@@ -320,9 +320,10 @@
                 this.load()
             },
             collapseChange(roleId){
+                console.log(this.checkedKeys)
                 const _this=this
                 if(roleId){
-                    this.request.get("http://localhost:8081/getCheckedKey",{
+                    this.request.get("/getCheckedKey",{
                     params:{
                         roleId:roleId
                     }
@@ -341,7 +342,7 @@
                     selectedMenuIds,
                 }
                 
-                this.request.post("http://localhost:8081/updateRoleMenu",treeMenuKeys).then(res=>{
+                this.request.post("/updateRoleMenu",treeMenuKeys).then(res=>{
                         if(res){
                             
                             this.$message.success("修改成功")
@@ -352,7 +353,7 @@
             },
             deleteRole(id,name,nameZh){
                 let role={id,name,nameZh}
-                this.request.post("http://localhost:8081/deleteRole",role).then(res=>{
+                this.request.post("/deleteRole",role).then(res=>{
                         if(res){
                             this.$message.success("删除成功")
                         }

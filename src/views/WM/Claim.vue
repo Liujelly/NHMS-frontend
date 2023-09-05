@@ -214,7 +214,7 @@ this.form.inOperator=null
     //选择
     handleSelect(){
       const _this=this;
-      this.request.get("http://localhost:8081/findEmployee").then(res=>{
+      this.request.get("http://124.223.217.249:8081/findEmployee").then(res=>{
         console.log(res)
                 _this.options=res.options;
             })
@@ -253,7 +253,7 @@ console.log(val)
 
   //导出
 exp(){
-  window.open("http://localhost:8081/MaterialDetail/export")
+  window.open("http://124.223.217.249:8081/MaterialDetail/export")
 },
 
  

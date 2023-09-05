@@ -190,7 +190,7 @@ export default {
 
   methods: {
     load() {
-      request.get("http://localhost:8081/apply/page", {
+      request.get("/apply/page", {
         params: {
           pageNum: this.pageNum,
           pageSize: this.pageSize,
@@ -207,7 +207,7 @@ export default {
     },
     save() {
       console.log(this.form)
-      request.post("http://localhost:8081/apply", this.form).then(res => {
+      request.post("/apply", this.form).then(res => {
         if (res) {
           this.$message.success("保存成功")
           this.dialogFormVisible = false
@@ -219,7 +219,7 @@ export default {
     },
     save1() {
       console.log(this.form)
-      request.post("http://localhost:8081/apply", this.form).then(res => {
+      request.post("/apply", this.form).then(res => {
         if (res) {
           this.$message.success("保存成功")
           this.dialogFormVisible1 = false
@@ -246,7 +246,7 @@ export default {
       this.load()
     },
     del(Aid) {
-      request.delete("http://localhost:8081/apply/" + Aid).then(res => {
+      request.delete("/apply/" + Aid).then(res => {
         if (res) {
           this.$message.success("删除成功")
           this.load()

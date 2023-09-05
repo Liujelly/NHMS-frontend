@@ -156,7 +156,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/dept/listAllDept',
+          url: 'http://124.223.217.249:8081/dept/listAllDept',
           data: {
             limit: limit,
             page: page,
@@ -179,7 +179,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/dept/addDept',
+          url: 'http://124.223.217.249:8081/dept/addDept',
           data: {
             deptName: this.form.deptName,
             deptDescribe: this.form.deptDescribe,
@@ -204,7 +204,7 @@
       removeThis(row) {
         this.$axios({
           method: 'delete',
-          url: 'http://localhost:8081/dept/delDept?id=' + row.id,
+          url: 'http://124.223.217.249:8081/dept/delDept?id=' + row.id,
         }).then((response) => {
           if (response.data.msg == "删除成功！") {
             this.$message.success(response.data.msg);
@@ -243,7 +243,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          url: 'http://localhost:8081/dept/updDept',
+          url: 'http://124.223.217.249:8081/dept/updDept',
           data: {
             id: this.form.id,
             deptName: this.form.deptName,

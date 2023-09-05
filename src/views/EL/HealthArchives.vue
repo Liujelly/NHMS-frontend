@@ -74,7 +74,7 @@ export default {
 
   methods:{
     show(row) {
-      request.get("http://localhost:8081/and/showHealth", {
+      request.get("/and/showHealth", {
         params: {
           orderId: row.orderId
         }
@@ -126,7 +126,7 @@ export default {
       this.load()
     },
     load(){
-      request.get("http://localhost:8081/and/show",{
+      request.get("/and/show",{
         params:{
           pageNum: this.pageNum,
           pageSize: this.pageSize,

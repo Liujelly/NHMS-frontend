@@ -96,7 +96,7 @@ export default {
   },
   methods: {
     del(id){
-      request.delete("http://localhost:8081/price/"+id).then(res=>{
+      request.delete("/price/"+id).then(res=>{
         if(res){
           this.$message.success("保存成功")
           this.dialogFormVisible=false
@@ -113,7 +113,7 @@ export default {
       this.dialogFormVisible = true
     },
     save(){
-      request.post("http://localhost:8081/price",this.form).then(res=>{
+      request.post("/price",this.form).then(res=>{
         this.$message.success("保存成功")
         this.dialogFormVisible=false
         this.load()
@@ -126,7 +126,7 @@ export default {
     },
     load()
     {
-      request.get("http://localhost:8081/pageprice",{
+      request.get("/pageprice",{
         params:{
           pageNum:this.pageNum,
           pageSize:this.pageSize,

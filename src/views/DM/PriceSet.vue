@@ -79,7 +79,7 @@
                 this.reload();
             },
             update(){
-                this.request.post("http://localhost:8081/ChaStaUpdate",this.tableData).then(res=>{
+                this.request.post("/ChaStaUpdate",this.tableData).then(res=>{
                     if(res){
                         this.$message.success("更新成功")
                     }else{
@@ -97,7 +97,7 @@
         },
         created(){
             const _this=this
-            this.request.get("http://localhost:8081/ChaStaFind").then(res=>{
+            this.request.get("/ChaStaFind").then(res=>{
                 console.log(res)
                 _this.tableData=res.data
             })

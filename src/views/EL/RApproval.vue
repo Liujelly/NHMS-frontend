@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     del(id){
-      request.delete("http://localhost:8081/Rapproval/"+id).then(res=>{
+      request.delete("/Rapproval/"+id).then(res=>{
         if(res){
           this.$message.success("保存成功")
           this.dialogFormVisible=false
@@ -108,7 +108,7 @@ export default {
       this.dialogFormVisible = true
     },
     save(){
-      request.post("http://localhost:8081/Rapproval",this.form).then(res=>{
+      request.post("/Rapproval",this.form).then(res=>{
         this.$message.success("保存成功")
         this.dialogFormVisible=false
         this.load()
@@ -116,7 +116,7 @@ export default {
     },
     load()
     {
-      request.get("http://localhost:8081/page5",{
+      request.get("/page5",{
         params:{
           pageNum:this.pageNum,
           pageSize:this.pageSize

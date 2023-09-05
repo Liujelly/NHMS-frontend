@@ -4,8 +4,8 @@
             <p style="font-size:20px;font-weight: bold;">基础设施管理</p>
         </div>
         <div class="function">
-            <el-button  type="success"  style="margin-left:5px;margin-right:10px" @click="handleAdd">新增宿舍</el-button>
-             <el-button  type="danger"  style="margin-left:5px;margin-right:10px" @click="handleDelete">删除宿舍</el-button>
+            <el-button  type="success"  style="margin-left:5px;margin-right:10px" @click="handleAdd">新增设施</el-button>
+             <el-button  type="danger"  style="margin-left:5px;margin-right:10px" @click="handleDelete">删除设施</el-button>
             <el-button type="primary" style="margin-right:35px" @click="exp">导出数据</el-button>
             <el-input  
                 style="margin-left:15px" 
@@ -194,7 +194,7 @@
         methods: {
             load(){
                 const _this=this
-                this.request.get("http://localhost:8081/infrastructureFindAll",{
+                this.request.get("/infrastructureFindAll",{
                 params:{
                     pageNum:this.pageNum,
                     pageSize:this.pageSize
@@ -252,7 +252,7 @@
                     params.push(item.id);       // 添加所有需要删除数据的id到一个数组，post提交过去
                 });
 
-                this.request.post("http://localhost:8081/infrastructureDelete",params).then(res=>{
+                this.request.post("/infrastructureDelete",params).then(res=>{
                 if(res){
                     this.$message.success("删除成功")
                 }else{
@@ -268,7 +268,7 @@
             },
             save(){
                 if(this.dialogFuc=="add"){
-                    this.request.post("http://localhost:8081/infrastructureAdd",this.form).then(res=>{
+                    this.request.post("/infrastructureAdd",this.form).then(res=>{
                     if(res){
                         this.$message.success("添加成功")
                     }else{
@@ -276,7 +276,7 @@
                     }
                 })
                 }else{
-                    this.request.post("http://localhost:8081/infrastructureUpdate",this.form).then(res=>{
+                    this.request.post("/infrastructureUpdate",this.form).then(res=>{
                     if(res){
                         this.$message.success("编辑成功")
                     }else{
@@ -292,7 +292,7 @@
             },
             findComplex(){
                 const _this=this
-                this.request.get("http://localhost:8081/infrastructureFindComplex",{
+                this.request.get("/infrastructureFindComplex",{
                 params:{
                     pageNum:this.pageNum,
                     pageSize:this.pageSize,
@@ -312,7 +312,7 @@
                 this.input3=''
             },
             exp(){
-                window.open("http://localhost:8081/infrastructureExport")
+                window.open("/infrastructureExport")
             },
             filterTag(value, row) {
                 return row.bedStatus === value;
